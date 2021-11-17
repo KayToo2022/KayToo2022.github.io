@@ -1,0 +1,185 @@
+.main {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.linkcontainer {
+    z-index: 1;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    padding-top: 10px;
+}
+
+.links {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    height: 30px;
+    padding-top: 10px;
+}
+
+a:hover {
+    color: skyblue
+}
+
+.MainContent {
+    min-height: 100vh;
+    width: 100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.navPadding {
+    height: 60px;
+}
+
+.resumeContainer {
+    width: 100vw;
+    justify-content: left;
+    text-align: left;
+}
+
+.resumeTitle {
+    float: left;
+    width: 30%;
+}
+
+.resumeContent {
+    float: left;
+    width: 70%;
+}
+
+.gridWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(20, 5%);
+}
+
+.gridBoxL {
+    text-align: left;
+    grid-column: 2/8;
+
+}
+
+
+.gridBoxR {
+    text-align: left;
+    grid-column: 8/20;
+    margin-bottom: 20px;
+}
+
+.gridCol1_6 {
+    text-align: left;
+    grid-column: 1/6;
+
+}
+
+.gridCol6_11 {
+    text-align: left;
+    grid-column: 6/11;
+
+}
+
+.gridCol11_16 {
+    text-align: left;
+    grid-column: 11/16;
+
+}
+
+.resumeTitle {
+    width: auto;
+}
+
+.major {
+    font: 24px sans-serif;
+    font-weight: bold;
+    text-transform: none;
+}
+
+.minor {
+    color: gray;
+    font: 20px sans-serif;
+}
+
+.info {
+    color: gray;
+    font: 18px sans-serif;
+    font-style: italic;
+
+}
+
+.underlined {
+    border-bottom: 3px solid blue;
+}
+
+.active {
+    color: #F26522;
+}
+
+h1 {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.contactInfo{
+    font: 18px serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+}
+
+.landing {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.Title {
+    font-size: 90px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.message {
+    font: 22px/1.9em serif;
+    color: #ddd;
+    width: 50%;
+}
+
+.downloadButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: darkslategrey;
+    color: white;
+    text-decoration: none;
+}
+
+.downloadButton:hover{
+    background-color: white;
+    color: darkslategrey;
+    transition: 0.5s;
+}

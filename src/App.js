@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import {
+  HideBetween,
+  HideDuring,
+  HideOn,
+  HideScroll,
+} from "react-hide-on-scroll";
 import './App.css';
+
+import Header from "./Components/Header";
+import Landing from "./Components/Landing"
+import About from "./Components/About"
+import Resume from "./Components/Resume"
+import Portfolio from "./Components/Portfolio"
+import Contact from "./Components/Contact"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React p
-        </a>
-      </header>
+      
+      
+      <HideDuring inverse>
+        <Header/>
+      </HideDuring>
+      <HideScroll variant="down" showOnPageInit={true}>
+        <HideScroll variant="up">
+          <Header/>
+        </HideScroll>
+      </HideScroll>
+      <Landing/>
+      <About/>
+      <Resume/>
+      <Portfolio/>
+      {/* <Contact/> */}
+
+      {/* <div id="contact" style={{height: '2000px', width: "100%", backgroundColor: 'red'}}>
+        div filler
+      </div> */}
     </div>
   );
 }
