@@ -36,7 +36,9 @@ function App() {
         div filler
       </div> */}
       <div style={{width:'100%', backgroundColor:'black'}}>
-        <p style={{fontSize:'12px', color:'gray'}}>v1.0.0</p>
+        <p style={{fontSize:'12px', color:'gray'}}>
+          v1.1.0
+        </p>
       </div>
     </div>
   );

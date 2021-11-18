@@ -68,6 +68,11 @@ a:hover {
 
 }
 
+.gridBoxMobile {
+    text-align: left;
+    grid-column: 2/19;
+}
+
 
 .gridBoxR {
     text-align: left;
