@@ -34,7 +34,7 @@ function About() {
 
     if(windowDimensions.width <= 700) {
         return(
-            <div id="about" className="MainContent" style={{minHeight: '50vh'}}>
+            <div id="about" className="MainContent">
                 <div className="navPadding"/>
                 <HideBetween startDivID="landing" endDivID="resume" inverse>
                     <Fade>

@@ -6,6 +6,8 @@ import {
 } from "react-hide-on-scroll";
 import './App.css';
 
+import ParticlesBg from "particles-bg";
+
 import Header from "./Components/Header";
 import Landing from "./Components/Landing"
 import About from "./Components/About"

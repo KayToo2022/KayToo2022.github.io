@@ -34,7 +34,7 @@ function Portfolio() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    if(windowDimensions.width <= 750){
+    if(windowDimensions.width <= 700){
         return(
             <div id="portfolio" className="MainContent">
             <div className="navPadding"/>
