@@ -39,7 +39,7 @@ function Portfolio() {
             <div id="portfolio" className="MainContent">
             <div className="navPadding"/>
             {/* <HideOn divID="resume" inverse> */}
-                <Fade>
+                {/* <Fade> */}
                     <div className="gridWrapper">
                         <div className="gridBoxMobile">
                             <div className="resumeTitle underlined">
@@ -47,7 +47,7 @@ function Portfolio() {
                             </div>    
                         </div>
                         <div className="gridBoxMobile">
-                            <div className="resumeTitle">
+                            <div>
                                 <img src={M4ME} className="gridBoxMobile" style={{width:'100%', marginTop:'16px'}}></img>
                             </div>    
                         </div>
@@ -67,7 +67,7 @@ function Portfolio() {
                             </a>
                         </div>
                         <div className="gridBoxMobile">
-                            <div className="resumeTitle">
+                            <div>
                                 <img src={SF} className="gridBoxMobile" style={{width:'100%', marginTop:'16px', backgroundColor:'white'}}></img>
                             </div>    
                         </div>
@@ -86,7 +86,7 @@ function Portfolio() {
                             </a>
                         </div>
                         <div className="gridBoxMobile">
-                            <div className="resumeTitle">
+                            <div>
                                 <img src={Manifest} style={{width:'100%', marginTop:'16px', backgroundColor:'white'}}></img>
                             </div>    
                         </div>
@@ -171,7 +171,7 @@ function Portfolio() {
                             </a>
                         </div>
                     </div>
-                </Fade>
+                {/* </Fade> */}
             {/* </HideOn> */}
             <div className="navPadding"/>
         </div>    
