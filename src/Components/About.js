@@ -36,7 +36,7 @@ function About() {
         return(
             <div id="about" className="MainContent">
                 <div className="navPadding"/>
-                <HideBetween startDivID="landing" endDivID="resume" inverse>
+                {/* <HideBetween startDivID="landing" endDivID="resume" inverse> */}
                     <Fade>
                         <div className="gridWrapper">
                             {/* <div className="gridBoxL" style={{textAlign:'center'}}>
@@ -83,7 +83,7 @@ function About() {
                         </div>
                         
                     </Fade>
-                </HideBetween>
+                {/* </HideBetween> */}
                 <div className="navPadding"/>            
             </div> 
         )

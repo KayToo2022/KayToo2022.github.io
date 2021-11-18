@@ -32,7 +32,7 @@ function Resume() {
         return(
             <div id="resume" className="MainContent" style={{backgroundColor:"white", color: 'black'}}>
             <div className="navPadding"/>
-            <HideBetween startDivID="about" endDivID="portfolio" inverse>
+            {/* <HideBetween startDivID="about" endDivID="portfolio" inverse> */}
                 <Fade>
                     <div className="gridWrapper">
                         <div className="gridBoxMobile">
@@ -74,7 +74,7 @@ function Resume() {
                         </div>
                     </div>
                 </Fade>
-            </HideBetween>
+            {/* </HideBetween> */}
             <div className="navPadding"/>
         </div>    
         )

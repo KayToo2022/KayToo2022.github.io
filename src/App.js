@@ -39,7 +39,7 @@ function App() {
       </div> */}
       <div style={{width:'100%', backgroundColor:'black'}}>
         <p style={{fontSize:'12px', color:'gray'}}>
-          v1.1.2
+          v1.1.3
         </p>
       </div>
     </div>

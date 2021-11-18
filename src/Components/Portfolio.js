@@ -38,7 +38,7 @@ function Portfolio() {
         return(
             <div id="portfolio" className="MainContent">
             <div className="navPadding"/>
-            <HideOn divID="resume" inverse>
+            {/* <HideOn divID="resume" inverse> */}
                 <Fade>
                     <div className="gridWrapper">
                         <div className="gridBoxMobile">
@@ -172,7 +172,7 @@ function Portfolio() {
                         </div>
                     </div>
                 </Fade>
-            </HideOn>
+            {/* </HideOn> */}
             <div className="navPadding"/>
         </div>    
         )
