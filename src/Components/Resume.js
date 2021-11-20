@@ -56,10 +56,10 @@ function Resume() {
                             </div>
                         </div>
                         <div className="gridBoxMobile">
-                            <h1 className="major">Adobe</h1>
+                            {/* <h1 className="major">Adobe</h1>
                             <p className="minor">Software Engineering Intern, eCommerce Experiences</p>
-                            <p className="info">May 2022 - August 2022</p>
-                            {/* <br/> */}
+                            <p className="info">May 2022 - August 2022</p> */}
+                            
                             <h1 className="major">Infinite Options</h1>
                             <p className="minor">Front-End Development Intern</p>
                             <p className="info">May 2021 - August 2021</p>
