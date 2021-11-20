@@ -4,9 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useHistory,
+  HashRouter
+} from "react-router-dom";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

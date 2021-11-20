@@ -38,6 +38,17 @@ a:hover {
     align-items: center; */
 }
 
+.testLanding {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .navPadding {
     height: 60px;
 }
@@ -72,7 +83,7 @@ a:hover {
 
 .gridBoxMobile {
     text-align: left;
-    grid-column: 2/19;
+    grid-column: 2/20;
 }
 
 

@@ -4,6 +4,14 @@ import {
   HideOn,
   HideScroll,
 } from "react-hide-on-scroll";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useHistory,
+  HashRouter
+} from "react-router-dom";
 import './App.css';
 
 import ParticlesBg from "particles-bg";
@@ -13,35 +21,79 @@ import Landing from "./Components/Landing"
 import About from "./Components/About"
 import Resume from "./Components/Resume"
 import Portfolio from "./Components/Portfolio"
-import Contact from "./Components/Contact"
+import TestSpace from "./Components/TestSpace"
+import SkillBar from "./Components/skill_bar/SkillBar"
 
 function App() {
+
+  const mainComponents = () => {
+    // Place main web components in here
+    return (
+      <div style={{width:'100vw'}}>
+        <HideDuring inverse>
+          <Header/>
+        </HideDuring>
+        <HideScroll variant="down" showOnPageInit={true}>
+          <HideScroll variant="up">
+            <Header/>
+          </HideScroll>
+        </HideScroll>
+
+        <Landing/>
+        <About/>
+        <Resume/>
+        <Portfolio/>
+
+        {/* <div style={{width:'100%', backgroundColor:'black'}}>
+          <p style={{fontSize:'12px', color:'gray'}}>
+            v1.1.4
+          </p>
+        </div> */}
+      </div>
+    )
+  }
+
+  const testComponents = () => {
+    // Experimental space, go to {url}/#/test to view
+    return (
+      <div style={{width:'100vw', height:'100vh'}}>
+        <HideDuring inverse>
+          <Header/>
+        </HideDuring>
+        <HideScroll variant="down" showOnPageInit={true}>
+          <HideScroll variant="up">
+            <Header/>
+          </HideScroll>
+        </HideScroll>
+
+        <Landing/>
+        <About/>
+        <Resume/>
+        <Portfolio/>
+
+      </div>
+    )
+  }
+
   return (
     <div className="App">
-      
-      
-      <HideDuring inverse>
-        <Header/>
-      </HideDuring>
-      <HideScroll variant="down" showOnPageInit={true}>
-        <HideScroll variant="up">
-          <Header/>
-        </HideScroll>
-      </HideScroll>
-      <Landing/>
-      <About/>
-      <Resume/>
-      <Portfolio/>
-      {/* <Contact/> */}
 
-      {/* <div id="contact" style={{height: '2000px', width: "100%", backgroundColor: 'red'}}>
-        div filler
-      </div> */}
+      <Routes>
+        <Route exact path='/' element={
+          <div>
+            {mainComponents()}
+          </div>
+        }/>
+        <Route path='/test' element={
+          <TestSpace/>
+        }/>
+      </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>
-        <p style={{fontSize:'12px', color:'gray'}}>
-          v1.1.4
-        </p>
-      </div>
+          <p style={{fontSize:'12px', color:'gray'}}>
+            v2.0.0
+          </p>
+        </div>
+      
     </div>
   );
 }

@@ -26,7 +26,7 @@ function Landing() {
     }, []);
 
     const banner = () => {
-        if (windowDimensions.width > 750) {
+        if (windowDimensions.width > 700) {
             return (
                 <div className="message" style={{height:'auto'}}>
                         I am an aspiring software developer studying to get my 
@@ -41,7 +41,7 @@ function Landing() {
     return(
         <div id="landing" className="MainContent">
             
-            <ParticlesBg type="circle" bg={true} style={{height:'100vh'}}/>
+            <ParticlesBg type="cobweb" color="#0055A2" bg={true} style={{height:'100vh'}} num={420}/>
             <Fade>
                 <div className="landing" style={{height:'auto'}}>
                     <p className="Title" style={{height:'auto'}}>Hi! My name is Kyle Tu</p>

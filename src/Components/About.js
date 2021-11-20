@@ -67,7 +67,7 @@ function About() {
                             <div className="gridBoxMobile">
                                 <h1>Contact Details:</h1>
                                 <h1 className="contactInfo">kaytoo2022@gmail.com</h1>
-                                <h1 className="contactInfo">(510)612-3222</h1>
+                                <h1 className="contactInfo">510-612-3222</h1>
                             </div>
                                 {/* <div className="gridCol6_11">
                                 <h1 className="contactInfo">kaytoo2022@gmail.com</h1>
@@ -92,11 +92,15 @@ function About() {
     return(
         <div id="about" className="MainContent" style={{minHeight: '50vh'}}>
             <div className="navPadding"/>
-            <HideBetween startDivID="landing" endDivID="resume" inverse>
+            {/* <HideBetween startDivID="landing" endDivID="resume" inverse> */}
                 <Fade>
                     <div className="gridWrapper">
                         <div className="gridBoxL" style={{textAlign:'center'}}>
-                            <img src={Logo} style = {{height: '120px', width: '120px', borderRadius:'50%', marginTop: '40px'}}></img>
+                            <a href='/#/test'>
+                            <img src={Logo} style = {{height: '120px', width: '120px', borderRadius:'50%', marginTop: '40px'}}>
+                                
+                            </img>
+                            </a>
                         </div>
                         <div className="gridBoxR">
                             <h1>About Me</h1>
@@ -119,12 +123,9 @@ function About() {
                                 <div className="gridCol1_6">
                                    <h1>Contact Details:</h1>
                                    <h1 className="contactInfo">kaytoo2022@gmail.com</h1>
-                                   <h1 className="contactInfo">(510)612-3222</h1>
+                                   <h1 className="contactInfo">510-612-3222</h1>
                                 </div>
-                                {/* <div className="gridCol6_11">
-                                   <h1 className="contactInfo">kaytoo2022@gmail.com</h1>
-                                   <h1 className="contactInfo">(510)612-3222</h1>
-                                </div> */}
+
 
                                 <div className="gridCol11_16">
                                    <h1>Resume:</h1>
@@ -139,7 +140,7 @@ function About() {
                     </div>
                     
                 </Fade>
-            </HideBetween>
+            {/* </HideBetween> */}
             <div className="navPadding"/>            
         </div> 
     )
