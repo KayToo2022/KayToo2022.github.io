@@ -21,6 +21,9 @@ function Header() {
                         <Link to="portfolio" className="links" smooth={true} duration={500} spy={true}>
                             Portfolio
                         </Link>
+                        <a href='/#/cocktails' className="links">
+                            Cocktails
+                        </a>
                         {/* <Link to="contact" className="links" smooth={true} duration={500} spy={true}>
                             Contact
                         </Link> */}
