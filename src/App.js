@@ -21,6 +21,7 @@ import Landing from "./Components/Landing"
 import About from "./Components/About"
 import Resume from "./Components/Resume"
 import Portfolio from "./Components/Portfolio"
+import Cocktails from "./Components/Cocktails"
 import TestSpace from "./Components/TestSpace"
 import SkillBar from "./Components/skill_bar/SkillBar"
 
@@ -86,6 +87,9 @@ function App() {
         }/>
         <Route path='/test' element={
           <TestSpace/>
+        }/>
+        <Route path='/cocktails' element={
+          <Cocktails/>
         }/>
       </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>

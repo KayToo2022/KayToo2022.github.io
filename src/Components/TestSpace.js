@@ -1,12 +1,15 @@
 import ParticlesBg from "particles-bg";
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import {useEffect, useState} from "react";
 import ReactSlider from "react-slider";
+import axios from "axios";
 
 import SkillBar from "./skill_bar/SkillBar"
 
 function TestSpace() {
 
     const[sliderVal, changeSlider] = useState(50);
+    const[searchTerm, changeSearch] = useState("");
 
     var rgbColor = ''
 
@@ -88,6 +91,27 @@ function TestSpace() {
                 </div>
                 {/* <SkillBar skill="Testing" progress="95" color="#F26522"/>
                 <SkillBar skill="Testing1" progress="40" color="yellow"/> */}
+            </div>
+
+            <div>
+                <input 
+                    type="text"
+                    onChange={(e) => {
+                            changeSearch(e.target.value)
+                            // console.log(e.target.value)
+                        }
+                    }
+                />
+                <button
+                    onClick={() => {
+                        axios.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+searchTerm)
+                        .then((response) => {
+                            console.log(response.data.drinks)
+                        })
+                    }}
+                >
+                    Test
+                </button>
             </div>
         </div>
         
