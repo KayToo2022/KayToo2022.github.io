@@ -103,7 +103,9 @@ function Cocktails() {
                     }} 
                     onClick={() => {
                         console.log(cocktailList.indexOf(d))
-                        setShowDrink(true)
+                        if (searchBy == "search.php?s") {
+                            setShowDrink(true)
+                        }
                         setCD(cocktailList.indexOf(d))
                     }}
                 >
@@ -323,8 +325,6 @@ function Cocktails() {
                     <div className="message">
                         If you are reading this, you are either a hiring manager who has read through so many resumes and probably needs a drink, or you are me.
                         In case you are the prior, this little page allows you to look up cocktail recipies from a public API from https://www.thecocktaildb.com/.
-                        You can use the search bar to type in the name of your cocktail and click on the image to get its recipe.
-                        
                     </div>
                     <br/>
                     
@@ -340,6 +340,7 @@ function Cocktails() {
                 
 
                 <div style={{width: "76%", marginLeft: "12%", marginTop:"2.5%", float: "center"}}>
+                    
                     <div
                         className="downloadButton"
                         style={{float: "left", marginRight: "2.5%", marginTop: "1px", marginBottom: "1px"}} 
@@ -386,11 +387,12 @@ function Cocktails() {
                         {listLength} results
                         </div>
                     ) : (null)}
-                    
-                    
+                    <br/>
+                    <br/>
+                    <div className="message" style={{width: "100%", textAlign: "center"}}>
+                        When searching by name, you can click on the image to pull up the recipe.
+                    </div>
                 </div>
-                <br/>
-                
                 
                 <br/>
                 <div style={{
