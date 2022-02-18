@@ -428,6 +428,7 @@ function Cocktails() {
                 <br/>
                 <div style={{
                     width: "80%",
+                    marginTop: "10%",
                     marginLeft: "10%",
                     backgroundColor: "black",
                 }}>
