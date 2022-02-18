@@ -242,6 +242,8 @@ function Cocktails() {
 
         var retDrink = {
             name: cd.strDrink,
+            strDrinkThumb: cd.strDrinkThumb,
+            strGlass: cd.strGlass,
             ingredients: combinedIngredients,
             steps: stepList2
         }
@@ -261,6 +263,7 @@ function Cocktails() {
             } else {
                 cd = cDJSON
             }
+            console.log(cd)
             // var cd = parseDrink(cocktailList[currentDrink])
             // console.log(cocktailList[currentDrink])
             if (windowDimensions.width > 900) {
@@ -399,7 +402,7 @@ function Cocktails() {
                                     &#215;
                                 </div>
 
-                                <img style={{ marginTop: "0%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b", }} src={cocktailList[currentDrink].strDrinkThumb} />
+                                <img style={{ marginTop: "0%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b", }} src={cd.strDrinkThumb} />
 
                                 <div style={{
                                     borderLeft: "2px solid #cdab4b",
@@ -407,11 +410,11 @@ function Cocktails() {
                                     fontStyle: "italic"
                                 }}>
                                     <div>
-                                        {cocktailList[currentDrink].strDrink}
+                                        {cd.name}
                                     </div>
 
                                     <div>
-                                        Glassware: {cocktailList[currentDrink].strGlass}
+                                        Glassware: {cd.strGlass}
                                     </div>
                                 </div>
 
