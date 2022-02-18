@@ -53,7 +53,7 @@ function Cocktails() {
             return null
         }
 
-        if (cocktailList.length == 1 || windowDimensions.width < 700) {
+        if (cocktailList.length == 1 || windowDimensions.width < 900) {
             const drinks = cocktailList.map((d) => (
                 <div
                     style={{
@@ -342,7 +342,7 @@ function Cocktails() {
                         Cocktail Recipies
                     </div>
 
-                    {(windowDimensions.width > 700) ? (
+                    {(windowDimensions.width > 900) ? (
                         <div className="message">
                             If you are reading this, you are either a hiring manager who has read through so many resumes and probably needs a drink, or you are me.
                             In case you are the prior, this little page allows you to look up cocktail recipies from a public API from https://www.thecocktaildb.com/.
@@ -387,7 +387,7 @@ function Cocktails() {
                         }}
                     />
 
-                    {(windowDimensions.width > 700) ? (
+                    {(windowDimensions.width > 900) ? (
                         <div
                             style={{float: "left", marginRight: "2.5%"}} 
                         >
@@ -395,11 +395,7 @@ function Cocktails() {
                         </div>
                     ) : (<div/>)}       
 
-                    
-
-                    
-
-                    {(listLength != 0 && windowDimensions.width > 700) ? (
+                    {(listLength != 0 && windowDimensions.width > 900) ? (
                         <div>
                             <select className="downloadButton" style={{float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none"}}  onChange={(e) => {
                                 setSB(e.target.value)
@@ -423,12 +419,11 @@ function Cocktails() {
                    
                 </div>
 
-                
                 <br/>
                 <br/>
                 <div style={{
                     width: "80%",
-                    marginTop: "10%",
+                    marginTop: "20px",
                     marginLeft: "10%",
                     backgroundColor: "black",
                 }}>
