@@ -53,7 +53,7 @@ function Cocktails() {
         console.log(id)
         axios.get("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+id.toString())
                 .then((response) => {
-                    console.log(response.data.drinks)
+                    console.log(response.data.drinks[0])
                     
                     setCDJSON(response.data.drinks[0])
                     setShowDrink(true)
@@ -261,7 +261,7 @@ function Cocktails() {
             } else {
                 cd = cDJSON
             }
-            var cd = parseDrink(cocktailList[currentDrink])
+            // var cd = parseDrink(cocktailList[currentDrink])
             console.log(cocktailList[currentDrink])
             if (windowDimensions.width > 900) {
                 return (
