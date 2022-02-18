@@ -206,7 +206,7 @@ function Cocktails() {
                 }
             }
             // edge case where ingredient is listed without measurement (i.e. margarita recipe)
-            if (ingredientsList[i]) {
+            if (ingredientsList[i] && !measurementsList[i]) {
                 
                 combinedIngredients.push(ingredientsList[i])
 
