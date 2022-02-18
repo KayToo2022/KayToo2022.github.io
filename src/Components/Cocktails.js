@@ -487,14 +487,14 @@ function Cocktails() {
             <div id="content" style={{ backgroundColor: 'black', display: "inline-block", width: "100vw" }}>
 
 
-                <div style={{ width: "76%", marginLeft: "12%", marginTop: "2.5%", float: "center" }}>
+                <div style={{ width: "76%", marginLeft: "auto", marginRight: "auto", marginTop: "2.5%", float: "center" }}>
 
                     
 
-                    <div style={{width: "100%"}}>
+                    <div style={{marginLeft: "auto", marginRight: "auto"}}>
                         <div
                             className="ctButton"
-                            style={{width: "23%",  float: "left", padding: "11px"}}
+                            style={{width: "23%", float: "left", padding: "11px"}}
                             onClick={() => {
                                 runSearch()
                             }}
@@ -502,7 +502,7 @@ function Cocktails() {
                             Search
                         </div>
 
-                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", padding: "none"}} onChange={(e) => {
+                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", padding: "none", borderRadius: "0"}} onChange={(e) => {
                             setSB(e.target.value)
                         }}>
                             <option value={"search.php?s"}>
@@ -512,10 +512,12 @@ function Cocktails() {
                                 Ingredient
                             </option>
                         </select>
+                    </div>
+                    <div style={{marginLeft: "auto", marginRight: "auto"}}>
 
                         <input
                             className="ctButton"
-                            style={{width: "46%", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
+                            style={{width: "46%", margin: "none", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
                             type="text"
                             onChange={(e) => {
                                 console.log(e.target.value)
