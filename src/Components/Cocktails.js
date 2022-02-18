@@ -502,7 +502,7 @@ function Cocktails() {
                             Search
                         </div>
 
-                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", padding: "none", borderRadius: "0"}} onChange={(e) => {
+                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", borderRadius: "0"}} onChange={(e) => {
                             setSB(e.target.value)
                         }}>
                             <option value={"search.php?s"}>
