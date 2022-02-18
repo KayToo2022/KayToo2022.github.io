@@ -293,7 +293,7 @@ function Cocktails() {
                             <div style={{ width: "40%", height: "100%", float: "left" }}>
 
 
-                                <img style={{ marginTop: "10%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b", }} src={cocktailList[currentDrink].strDrinkThumb} />
+                                <img style={{ marginTop: "10%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b", }} src={cd.strDrinkThumb} />
 
                                 <div style={{
                                     borderLeft: "2px solid #cdab4b",
