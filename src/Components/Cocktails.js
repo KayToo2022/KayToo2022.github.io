@@ -4,13 +4,32 @@ import Fade from "react-reveal";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+
 function Cocktails() {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    
     const[searchTerm, changeSearch] = useState("");
     const[cocktailList, setCocktailList] = useState([]);
     const[listLength, setListLength] = useState(0);
     const[showDrink, setShowDrink] = useState(false);
     const[currentDrink, setCD] = useState(-1);
     const[searchBy, setSB] = useState("search.php?s");
+
+    useEffect(() => {
+        function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const runSearch = () => {
         console.log("running search")
@@ -34,7 +53,7 @@ function Cocktails() {
             return null
         }
 
-        if (cocktailList.length == 1) {
+        if (cocktailList.length == 1 || windowDimensions.width < 700) {
             const drinks = cocktailList.map((d) => (
                 <div
                     style={{
@@ -322,10 +341,15 @@ function Cocktails() {
                     <div className='Title'>
                         Cocktail Recipies
                     </div>
-                    <div className="message">
-                        If you are reading this, you are either a hiring manager who has read through so many resumes and probably needs a drink, or you are me.
-                        In case you are the prior, this little page allows you to look up cocktail recipies from a public API from https://www.thecocktaildb.com/.
-                    </div>
+
+                    {(windowDimensions.width > 700) ? (
+                        <div className="message">
+                            If you are reading this, you are either a hiring manager who has read through so many resumes and probably needs a drink, or you are me.
+                            In case you are the prior, this little page allows you to look up cocktail recipies from a public API from https://www.thecocktaildb.com/.
+                        </div>
+                    ) : (<div/>)}
+
+                    
                     <br/>
                     
 
@@ -365,11 +389,15 @@ function Cocktails() {
                         }}
                     />
 
-                    <div
-                        style={{float: "left", marginRight: "2.5%"}} 
-                    >
-                        Filter by:
-                    </div>
+                    {(windowDimensions.width > 700) ? (
+                        <div
+                            style={{float: "left", marginRight: "2.5%"}} 
+                        >
+                            Filter by:
+                        </div>
+                    ) : (<div/>)}       
+
+                    
 
                     <select className="downloadButton" style={{float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none"}}  onChange={(e) => {
                         setSB(e.target.value)
@@ -382,7 +410,7 @@ function Cocktails() {
                         </option>
                     </select>
 
-                    {listLength != 0 ? (
+                    {(listLength != 0 && windowDimensions.width > 700) ? (
                         <div style={{float: "left", border: "none"}}>
                         {listLength} results
                         </div>
