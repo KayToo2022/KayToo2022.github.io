@@ -22,6 +22,8 @@ function Cocktails() {
     const [currentDrink, setCD] = useState(-1);
     const [searchBy, setSB] = useState("search.php?s");
 
+    const [cDJSON, setCDJSON] = useState(null);
+
     useEffect(() => {
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
@@ -47,6 +49,23 @@ function Cocktails() {
         }
     }
 
+    const searchByID = (id) => {
+        console.log(id)
+        axios.get("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+id.toString())
+                .then((response) => {
+                    console.log(response.data.drinks)
+                    
+                    setCDJSON(response.data.drinks[0])
+                    setShowDrink(true)
+                    //working
+                    // setCocktailList(response.data.drinks)
+                    // setListLength(response.data.drinks.length)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+    }
+
     const drinkListRendered = () => {
         if (cocktailList == null) {
             return null
@@ -65,9 +84,12 @@ function Cocktails() {
                         float: 'left',
                     }}
                     onClick={() => {
-                        console.log(cocktailList.indexOf(d))
-                        setShowDrink(true)
-                        setCD(cocktailList.indexOf(d))
+                        if (searchBy == "search.php?s") {
+                            setShowDrink(true)
+                            setCD(cocktailList.indexOf(d))
+                        } else {
+                            searchByID(d.idDrink)
+                        }
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
@@ -91,9 +113,12 @@ function Cocktails() {
                         float: 'left',
                     }}
                     onClick={() => {
-                        console.log(cocktailList.indexOf(d))
-                        setShowDrink(true)
-                        setCD(cocktailList.indexOf(d))
+                        if (searchBy == "search.php?s") {
+                            setShowDrink(true)
+                            setCD(cocktailList.indexOf(d))
+                        } else {
+                            searchByID(d.idDrink)
+                        }
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
@@ -118,11 +143,16 @@ function Cocktails() {
 
                     }}
                     onClick={() => {
+                        // working here
                         console.log(cocktailList.indexOf(d))
+                        console.log(d)
                         if (searchBy == "search.php?s") {
                             setShowDrink(true)
+                            setCD(cocktailList.indexOf(d))
+                        } else {
+                            searchByID(d.idDrink)
+                            // setShowDrink(true)
                         }
-                        setCD(cocktailList.indexOf(d))
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
@@ -158,9 +188,9 @@ function Cocktails() {
         return ins
     }
 
-    const parseDrink = () => {
-        var cd = cocktailList[currentDrink]
-
+    const parseDrink = (cd) => {
+        // var cd = cocktailList[currentDrink]
+        
         var ingredientsList = []
         var measurementsList = []
         var stepList = []
@@ -225,7 +255,13 @@ function Cocktails() {
         if (!showDrink) {
             return null
         } else {
-            var cd = parseDrink()
+            var cd = null
+            if (searchBy == "search.php?s") {
+                cd = parseDrink(cocktailList[currentDrink])
+            } else {
+                cd = cDJSON
+            }
+            var cd = parseDrink(cocktailList[currentDrink])
             console.log(cocktailList[currentDrink])
             if (windowDimensions.width > 900) {
                 return (
@@ -434,20 +470,10 @@ function Cocktails() {
 
                     <div className='navPadding' />
 
-                    
-                    {(windowDimensions.width > 900) ? (
-                        <div className="message">
-                            <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
-                            <div className="message">or</div>
-                            <a href='/' className="downloadButton">Return to the main page</a>
-                        </div>
-                    ) : (
-                        <div className="message" style={{width: "80%"}}>
-                            <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto', display: "inline" }}>Click here to get started</Link>
-                            <div className="message" style={{ height: 'auto', display: "inline", marginLeft:"5%", marginRight:"5%"}}>or</div>
-                            <a href='/' className="downloadButton" style={{ height: 'auto', display: "inline" }}>Return to the main page</a>
-                        </div>
-                    )}
+                    <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
+                    <div className="message" style={{ height: 'auto', marginLeft:"auto", marginRight:"auto"}}>or</div>
+                    <a href='/' className="downloadButton">Return to the main page</a>
+
 
                     
                     
@@ -491,7 +517,7 @@ function Cocktails() {
                         </div>
                     ) : (<div />)}
 
-                    {(listLength != 0 && windowDimensions.width > 900) ? (
+                    {(windowDimensions.width > 900) ? (
                         <div>
                             <select className="downloadButton" style={{ float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none" }} onChange={(e) => {
                                 setSB(e.target.value)
@@ -506,6 +532,7 @@ function Cocktails() {
                             <div style={{ float: "left", border: "none" }}>
                                 {listLength} results
                             </div>
+                            <div className='navPadding' />
                             <div className="message" style={{ width: "100%", textAlign: "center" }}>
                                 When searching by name, you can click on the image to pull up the recipe.
                             </div>
