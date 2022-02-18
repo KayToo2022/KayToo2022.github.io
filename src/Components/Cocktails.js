@@ -51,7 +51,7 @@ function Cocktails() {
 
     const searchByID = (id) => {
         console.log(id)
-        axios.get("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+id.toString())
+        axios.get("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+id.toString())
                 .then((response) => {
                     console.log(response.data.drinks)
                     
