@@ -100,15 +100,15 @@ function Resume() {
                             </div>    
                         </div>
                         <div className="gridBoxMobile">
-                            <SkillBar name="Java" percent="55" className="major"/>
-                            <SkillBar name="C++" percent="60" className="major"/>
-                            <SkillBar name="Python" percent="85" className="major"/>
-                            <SkillBar name="HTML" percent="70" className="major"/>
-                            <SkillBar name="CSS" percent="50" className="major"/>
-                            <SkillBar name="JavaScript" percent="70" className="major"/>
-                            <SkillBar name="React" percent="90" className="major"/>
-                            <SkillBar name="Git" percent="65" className="major"/>
-                            <SkillBar name="MATLAB" percent="45" className="major"/>
+                            <SkillBar name="Java" percent="55" className="major" color="rgb(61, 1, 103)"/>
+                            <SkillBar name="C++" percent="60" className="major" color="rgb(99, 199, 123)"/>
+                            <SkillBar name="Python" percent="85" className="major" color="rgb(7, 123, 228)"/>
+                            <SkillBar name="HTML" percent="70" className="major" color="rgb(132, 126, 217)"/>
+                            <SkillBar name="CSS" percent="50" className="major" color="rgb(107, 221, 141)"/>
+                            <SkillBar name="JavaScript" percent="70" className="major" color="rgb(76, 143, 225)"/>
+                            <SkillBar name="React" percent="90" className="major" color="rgb(109, 69, 188)"/>
+                            <SkillBar name="Git" percent="65" className="major" color="rgb(108, 223, 240)"/>
+                            <SkillBar name="MATLAB" percent="45" className="major" color="rgb(97, 103, 122)"/>
                         </div>
                     </div>
                 </Fade>

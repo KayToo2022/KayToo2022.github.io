@@ -94,7 +94,7 @@ function App() {
       </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>
           <p style={{fontSize:'12px', color:'gray'}}>
-            v2.2.4
+            v2.2.5
           </p>
         </div>
       
