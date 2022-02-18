@@ -198,10 +198,12 @@ function Cocktails() {
         var combinedIngredients = []
 
         for (let i = 0; i < ingredientsList.length; i++) {
-            if (measurementsList[i].endsWith(' ')) {
-                combinedIngredients.push(measurementsList[i] + ingredientsList[i])
-            } else {
-                combinedIngredients.push(measurementsList[i] + " " + ingredientsList[i])
+            if (measurementsList[i]){
+                if (measurementsList[i].endsWith(' ')) {
+                    combinedIngredients.push(measurementsList[i] + ingredientsList[i])
+                } else {
+                    combinedIngredients.push(measurementsList[i] + " " + ingredientsList[i])
+                }
             }
         }
 
@@ -224,110 +226,212 @@ function Cocktails() {
         } else {
             var cd = parseDrink()
             console.log(cocktailList[currentDrink])
-
-            return (
-                <div
-                    style={{
-                        height: "100%",
-                        width: "100%",
-                        zIndex: "101",
-                        left: "0",
-                        top: "0",
-                        overflow: "auto",
-                        position: "fixed",
-                        display: "grid",
-                        backgroundColor: "rgba(24, 25, 26, 0.8)",
-                    }}      
-                >
+            if (windowDimensions.width > 900) {
+                return (
                     <div
                         style={{
-                            position: "relative",
-                            justifySelf: "center",
-                            alignSelf: "center",
-                            display: "block",
-                            // border: "#ff6505 solid",
-                            backgroundColor: "black",
-                            height: "auto",
-                            width: "80vw",
-                            zIndex: "102",
-                            // padding: "10px 0px 10px 0px",
-                            // borderRadius: "20px",
-                        }}
-
-                        // onClick={() => {
-                        //     parseDrink();
-                        // }}
+                            height: "100%",
+                            width: "100%",
+                            zIndex: "101",
+                            left: "0",
+                            top: "0",
+                            overflow: "auto",
+                            position: "fixed",
+                            display: "grid",
+                            backgroundColor: "rgba(24, 25, 26, 0.8)",
+                        }}      
                     >
-                        
-                        {/* {cocktailList[currentDrink].strDrink} */}
-                        <div style={{width: "40%", height: "100%", float: "left"}}>
-                            
-                            
-                            <img style={{marginTop: "10%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b",}} src={cocktailList[currentDrink].strDrinkThumb}/>
+                        <div
+                            style={{
+                                position: "relative",
+                                justifySelf: "center",
+                                alignSelf: "center",
+                                display: "block",
+                                // border: "#ff6505 solid",
+                                backgroundColor: "black",
+                                height: "auto",
+                                width: "80vw",
+                                zIndex: "102",
+                                // padding: "10px 0px 10px 0px",
+                                // borderRadius: "20px",
+                            }}
 
-                            <div style={{
-                                borderLeft: "2px solid #cdab4b",
-                                margin: "5% 0% 10% 10%",
-                                fontStyle: "italic"
-                            }}>
-                                <div>
-                                    {cocktailList[currentDrink].strDrink}
-                                </div>
+                            // onClick={() => {
+                            //     parseDrink();
+                            // }}
+                        >
+                            
+                            {/* {cocktailList[currentDrink].strDrink} */}
+                            <div style={{width: "40%", height: "100%", float: "left"}}>
+                                
+                                
+                                <img style={{marginTop: "10%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b",}} src={cocktailList[currentDrink].strDrinkThumb}/>
 
-                                <div>
-                                    Glassware: {cocktailList[currentDrink].strGlass}
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    margin: "5% 0% 10% 10%",
+                                    fontStyle: "italic"
+                                }}>
+                                    <div>
+                                        {cocktailList[currentDrink].strDrink}
+                                    </div>
+
+                                    <div>
+                                        Glassware: {cocktailList[currentDrink].strGlass}
+                                    </div>
                                 </div>
+                                
                             </div>
+
+                            <div style={{width: "60%", height: "100%", float: "left"}}>
+                                <div
+                                    style= {{
+                                        textAlign: "right",
+                                        fontWeight: "bolder",
+                                        height: "10%",
+                                        fontSize: "40px",
+                                        marginRight: "5px",
+                                        // color: "#cdab4b"
+                                    }}
+                                    onClick={() => {
+                                        setCD(-1)
+                                        setShowDrink(false)
+                                    }}
+                                >
+                                    &#215;
+                                </div>
+                                
+                                <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b"}}>Ingredients</div>
+
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    marginRight: "10%"
+                                }}>
+                                    
+                                    <ul style={{textAlign: 'left', fontStyle: "italic"}}>
+                                        {ingredientsRendered(cd.ingredients)}
+                                    </ul>
+                                </div>
+                                
+                                <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b"}}>Instructions</div>
+
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    marginRight: "10%"
+                                }}>
+                                    
+                                    <ol style={{textAlign: 'left', fontStyle: "italic"}}>
+                                        {instructionsRendered(cd.steps)}
+                                    </ol>
+                                </div>
                             
+                                
+                            </div>
                         </div>
+                    </div>
+                )
+            } else {
+                return (
+                    <div
+                        style={{
+                            height: "100%",
+                            width: "100%",
+                            zIndex: "101",
+                            left: "0",
+                            top: "0",
+                            overflow: "auto",
+                            position: "fixed",
+                            display: "grid",
+                            backgroundColor: "rgba(24, 25, 26, 0.8)",
+                        }}      
+                    >
+                        <div
+                            style={{
+                                position: "relative",
+                                justifySelf: "center",
+                                alignSelf: "center",
+                                display: "block",
+                                // border: "#ff6505 solid",
+                                backgroundColor: "black",
+                                height: "auto",
+                                width: "80vw",
+                                zIndex: "102",
+                                // padding: "10px 0px 10px 0px",
+                                // borderRadius: "20px",
+                            }}
 
-                        <div style={{width: "60%", height: "100%", float: "left"}}>
-                            <div
-                                style= {{
-                                    textAlign: "right",
-                                    fontWeight: "bolder",
-                                    height: "10%",
-                                    fontSize: "40px",
-                                    marginRight: "5px",
-                                    // color: "#cdab4b"
-                                }}
-                                onClick={() => {
-                                    setCD(-1)
-                                    setShowDrink(false)
-                                }}
-                            >
-                                &#215;
-                            </div>
+                            // onClick={() => {
+                            //     parseDrink();
+                            // }}
+                        >
                             
-                            <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b"}}>Ingredients</div>
-
-                            <div style={{
-                                borderLeft: "2px solid #cdab4b",
-                                marginRight: "10%"
-                            }}>
+                            {/* {cocktailList[currentDrink].strDrink} */}
+                            <div style={{width: "100%", height: "100%", float: "left"}}>
+                                <div
+                                    style= {{
+                                        textAlign: "right",
+                                        fontWeight: "bolder",
+                                        height: "10%",
+                                        fontSize: "40px",
+                                        marginRight: "5px",
+                                        // color: "#cdab4b"
+                                    }}
+                                    onClick={() => {
+                                        setCD(-1)
+                                        setShowDrink(false)
+                                    }}
+                                >
+                                    &#215;
+                                </div>
                                 
-                                <ul style={{textAlign: 'left', fontStyle: "italic"}}>
-                                    {ingredientsRendered(cd.ingredients)}
-                                </ul>
-                            </div>
-                            
-                            <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b"}}>Instructions</div>
+                                <img style={{marginTop: "0%", width: '80%', objectFit: "contain", border: "3px solid #cdab4b",}} src={cocktailList[currentDrink].strDrinkThumb}/>
 
-                            <div style={{
-                                borderLeft: "2px solid #cdab4b",
-                                marginRight: "10%"
-                            }}>
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    margin: "5% 0% 10% 10%",
+                                    fontStyle: "italic"
+                                }}>
+                                    <div>
+                                        {cocktailList[currentDrink].strDrink}
+                                    </div>
+
+                                    <div>
+                                        Glassware: {cocktailList[currentDrink].strGlass}
+                                    </div>
+                                </div>
                                 
-                                <ol style={{textAlign: 'left', fontStyle: "italic"}}>
-                                    {instructionsRendered(cd.steps)}
-                                </ol>
+                                
+                                
+                                <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b", margin: "2.5% 0% 0% 10%",}}>Ingredients</div>
+
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    margin: "2.5% 0% 0% 10%"
+                                }}>
+                                    
+                                    <ul style={{textAlign: 'left', fontStyle: "italic"}}>
+                                        {ingredientsRendered(cd.ingredients)}
+                                    </ul>
+                                </div>
+                                
+                                <div style={{textAlign: 'left', fontWeight: "bold", color: "#cdab4b", margin: "2.5% 0% 0% 10%"}}>Instructions</div>
+
+                                <div style={{
+                                    borderLeft: "2px solid #cdab4b",
+                                    margin: "2.5% 10% 10% 10%"
+                                }}>
+                                    
+                                    <ol style={{textAlign: 'left', fontStyle: "italic"}}>
+                                        {instructionsRendered(cd.steps)}
+                                    </ol>
+                                </div>
                             </div>
-                           
+
                             
                         </div>
                     </div>
-                </div>
-            )
+                )
+            }
         }
     }
 
