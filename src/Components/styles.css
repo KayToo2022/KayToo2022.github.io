@@ -202,3 +202,24 @@ h1 {
     color: darkslategrey;
     transition: 0.5s;
 }
+
+.ctButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: #cdab4b;
+    text-decoration: none;
+    border: 1px solid #cdab4b;
+}
+
+.ctButton:hover{
+    background-color: #cdab4b;
+    color: black;
+    transition: 0.5s;
+}

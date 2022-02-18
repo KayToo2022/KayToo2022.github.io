@@ -474,9 +474,9 @@ function Cocktails() {
 
                     <div className='navPadding' />
 
-                    <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
+                    <Link className="ctButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
                     <div className="message" style={{ height: 'auto', marginLeft:"auto", marginRight:"auto"}}>or</div>
-                    <a href='/' className="downloadButton">Return to the main page</a>
+                    <a href='/' className="ctButton">Return to the main page</a>
 
 
                     
@@ -489,60 +489,68 @@ function Cocktails() {
 
                 <div style={{ width: "76%", marginLeft: "12%", marginTop: "2.5%", float: "center" }}>
 
-                    <div
-                        className="downloadButton"
-                        style={{ float: "left", marginRight: "2.5%", marginTop: "1px", marginBottom: "1px" }}
-                        onClick={() => {
-                            runSearch()
-                        }}
-                    >
-                        Search
-                    </div>
-                    <input
-                        className="downloadButton"
-                        style={{ float: "left", border: "none", backgroundColor: "white", color: "black", marginRight: "2.5%", marginTop: "1px", marginBottom: "1px" }}
-                        type="text"
-                        onChange={(e) => {
-                            console.log(e.target.value)
-                            changeSearch(e.target.value)
-                        }}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                runSearch();
-                            }
-                        }}
-                    />
+                    
 
-                    {(windowDimensions.width > 900) ? (
+                    <div style={{width: "100%"}}>
+                        <div
+                            className="ctButton"
+                            style={{width: "23%",  float: "left", padding: "11px"}}
+                            onClick={() => {
+                                runSearch()
+                            }}
+                        >
+                            Search
+                        </div>
+
+                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", padding: "none"}} onChange={(e) => {
+                            setSB(e.target.value)
+                        }}>
+                            <option value={"search.php?s"}>
+                                Name
+                            </option>
+                            <option value={"filter.php?i"}>
+                                Ingredient
+                            </option>
+                        </select>
+
+                        <input
+                            className="ctButton"
+                            style={{width: "46%", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
+                            type="text"
+                            onChange={(e) => {
+                                console.log(e.target.value)
+                                changeSearch(e.target.value)
+                            }}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    runSearch();
+                                }
+                            }}
+                        />
+                    </div>
+                    
+                        {/* <div style={{ float: "left", border: "none" }}>
+                            {listLength} results
+                        </div>
+                        <div className='navPadding' />
+                        <div className="message" style={{ width: "100%", textAlign: "center" }}>
+                            When searching by name, you can click on the image to pull up the recipe.
+                        </div> */}
+                    
+                    
+
+
+                   
+
+                    {/* {(windowDimensions.width > 900) ? (
                         <div
                             style={{ float: "left", marginRight: "2.5%" }}
                         >
                             Filter by:
                         </div>
-                    ) : (<div />)}
+                    ) : (<div />)} */}
 
-                    {(windowDimensions.width > 900) ? (
-                        <div>
-                            <select className="downloadButton" style={{ float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none" }} onChange={(e) => {
-                                setSB(e.target.value)
-                            }}>
-                                <option value={"search.php?s"}>
-                                    Name
-                                </option>
-                                <option value={"filter.php?i"}>
-                                    Ingredient
-                                </option>
-                            </select>
-                            <div style={{ float: "left", border: "none" }}>
-                                {listLength} results
-                            </div>
-                            <div className='navPadding' />
-                            <div className="message" style={{ width: "100%", textAlign: "center" }}>
-                                When searching by name, you can click on the image to pull up the recipe.
-                            </div>
-                        </div>
-                    ) : (null)}
-
+                    
 
                 </div>
 
