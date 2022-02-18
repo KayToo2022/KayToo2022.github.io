@@ -261,7 +261,8 @@ function Cocktails() {
             if (searchBy == "search.php?s") {
                 cd = parseDrink(cocktailList[currentDrink])
             } else {
-                cd = cDJSON
+                var cd0 = cDJSON
+                cd = parseDrink(cd0)
             }
             console.log(cd)
             // var cd = parseDrink(cocktailList[currentDrink])
@@ -304,7 +305,7 @@ function Cocktails() {
                                     fontStyle: "italic"
                                 }}>
                                     <div>
-                                        {cd.strDrink}
+                                        {cd.name}
                                     </div>
 
                                     <div>
