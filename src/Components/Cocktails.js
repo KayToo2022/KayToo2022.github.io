@@ -262,7 +262,7 @@ function Cocktails() {
                 cd = cDJSON
             }
             // var cd = parseDrink(cocktailList[currentDrink])
-            console.log(cocktailList[currentDrink])
+            // console.log(cocktailList[currentDrink])
             if (windowDimensions.width > 900) {
                 return (
                     <div
@@ -301,11 +301,11 @@ function Cocktails() {
                                     fontStyle: "italic"
                                 }}>
                                     <div>
-                                        {cocktailList[currentDrink].strDrink}
+                                        {cd.strDrink}
                                     </div>
 
                                     <div>
-                                        Glassware: {cocktailList[currentDrink].strGlass}
+                                        Glassware: {cd.strGlass}
                                     </div>
                                 </div>
 
