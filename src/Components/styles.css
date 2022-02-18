@@ -223,3 +223,21 @@ h1 {
     color: black;
     transition: 0.5s;
 }
+
+.ctDropdown {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    background-color: black;
+    color: #cdab4b;
+    border: 1px solid #cdab4b;
+}
+
+.ctDropdown:hover{
+    background-color: #cdab4b;
+    color: black;
+    transition: 0.5s;
+}

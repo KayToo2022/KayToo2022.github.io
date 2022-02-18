@@ -494,7 +494,7 @@ function Cocktails() {
                     <div style={{marginLeft: "auto", marginRight: "auto"}}>
                         <div
                             className="ctButton"
-                            style={{width: "23%", float: "left", padding: "11px"}}
+                            style={{float: "left", padding: "11px"}}
                             onClick={() => {
                                 runSearch()
                             }}
@@ -502,22 +502,9 @@ function Cocktails() {
                             Search
                         </div>
 
-                        <select className="ctButton" style={{width: "23%", float: "left", margin: "none", borderRadius: "0"}} onChange={(e) => {
-                            setSB(e.target.value)
-                        }}>
-                            <option value={"search.php?s"}>
-                                Name
-                            </option>
-                            <option value={"filter.php?i"}>
-                                Ingredient
-                            </option>
-                        </select>
-                    </div>
-                    <div style={{marginLeft: "auto", marginRight: "auto"}}>
-
                         <input
                             className="ctButton"
-                            style={{width: "46%", margin: "none", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
+                            style={{margin: "none", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
                             type="text"
                             onChange={(e) => {
                                 console.log(e.target.value)
@@ -529,6 +516,25 @@ function Cocktails() {
                                 }
                             }}
                         />
+                    </div>
+
+                    <br/>
+                    <br/>
+                    
+                    <div style={{marginLeft: "auto", marginRight: "auto"}}>
+                        <div style={{float: "left", color: "#cdab4b", font: "18px sans-serif", letterSpacing: "1px", padding: "10px"}}>
+                            Filter:
+                        </div>
+                        <select className="ctDropdown" style={{float: "left", margin: "10px"}} onChange={(e) => {
+                            setSB(e.target.value)
+                        }}>
+                            <option value={"search.php?s"}>
+                                Name
+                            </option>
+                            <option value={"filter.php?i"}>
+                                Ingredient
+                            </option>
+                        </select>
                     </div>
                     
                         {/* <div style={{ float: "left", border: "none" }}>
