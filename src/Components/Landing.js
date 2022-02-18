@@ -41,7 +41,7 @@ function Landing() {
     return(
         <div id="landing" className="MainContent">
             
-            <ParticlesBg type="cobweb" color="#0055A2" bg={true} style={{height:'100vh'}} num={420}/>
+            <ParticlesBg type="cobweb" color="#0055A2" bg={{position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "#282c34"}} style={{height:'100vh'}} num={420}/>
             <Fade>
                 <div className="landing" style={{height:'auto'}}>
                     <p className="Title" style={{height:'auto'}}>Hi! My name is Kyle Tu</p>

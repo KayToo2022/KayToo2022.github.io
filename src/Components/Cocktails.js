@@ -334,9 +334,9 @@ function Cocktails() {
     return(
         <div>
             {drinkModal()}
-
+            <ParticlesBg type="cobweb" color={["#cdab4b"]} bg={{position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "black"}} num={300}/>
             <div className="testLanding">
-                <ParticlesBg type="cobweb" color={["#cdab4b"]} bg={{position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "black"}} style={{height:'100vh'}} num={300}/>
+                
                     <Fade>
                     <div className='Title'>
                         Cocktail Recipies
@@ -349,8 +349,6 @@ function Cocktails() {
                         </div>
                     ) : (<div/>)}
 
-                    
-                    <br/>
                     
 
                     <div className='navPadding'/>
@@ -399,28 +397,33 @@ function Cocktails() {
 
                     
 
-                    <select className="downloadButton" style={{float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none"}}  onChange={(e) => {
-                        setSB(e.target.value)
-                    }}>
-                        <option value={"search.php?s"}>
-                            Name
-                        </option>
-                        <option value={"filter.php?i"}>
-                            Ingredient
-                        </option>
-                    </select>
+                    
 
                     {(listLength != 0 && windowDimensions.width > 700) ? (
-                        <div style={{float: "left", border: "none"}}>
-                        {listLength} results
+                        <div>
+                            <select className="downloadButton" style={{float: "left", marginRight: "2.5%", border: "none", margin: "none", padding: "none"}}  onChange={(e) => {
+                                setSB(e.target.value)
+                            }}>
+                                <option value={"search.php?s"}>
+                                    Name
+                                </option>
+                                <option value={"filter.php?i"}>
+                                    Ingredient
+                                </option>
+                            </select>
+                            <div style={{float: "left", border: "none"}}>
+                                {listLength} results
+                            </div>
+                            <div className="message" style={{width: "100%", textAlign: "center"}}>
+                                When searching by name, you can click on the image to pull up the recipe.
+                            </div>
                         </div>
                     ) : (null)}
-                    <br/>
-                    <br/>
-                    <div className="message" style={{width: "100%", textAlign: "center"}}>
-                        When searching by name, you can click on the image to pull up the recipe.
-                    </div>
+
+                   
                 </div>
+
+                
                 
                 <br/>
                 <div style={{
