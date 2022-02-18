@@ -504,7 +504,7 @@ function Cocktails() {
 
                         <input
                             className="ctButton"
-                            style={{margin: "none", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
+                            style={{margin: "none", marginTop:"0", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
                             type="text"
                             onChange={(e) => {
                                 console.log(e.target.value)
