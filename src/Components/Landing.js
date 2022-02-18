@@ -26,7 +26,7 @@ function Landing() {
     }, []);
 
     const banner = () => {
-        if (windowDimensions.width > 700) {
+        if (windowDimensions.width > 900) {
             return (
                 <div className="message" style={{height:'auto'}}>
                         I am an aspiring software developer studying to get my 

@@ -48,7 +48,6 @@ function Cocktails() {
     }
 
     const drinkListRendered = () => {
-        // console.log("drink list rendered")
         if (cocktailList == null) {
             return null
         }
@@ -72,7 +71,6 @@ function Cocktails() {
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
-                    {/* {cocktailList.indexOf(d)}.&nbsp;  */}
                     <div style={{ width: "80%", marginLeft: "10%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", lineHeight: "1.5em", height: "1.5em" }}>
                         {d.strDrink}
                     </div>
@@ -99,7 +97,6 @@ function Cocktails() {
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
-                    {/* {cocktailList.indexOf(d)}.&nbsp;  */}
                     <div style={{ width: "80%", marginLeft: "10%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", lineHeight: "1.5em", height: "1.5em" }}>
                         {d.strDrink}
                     </div>
@@ -129,7 +126,6 @@ function Cocktails() {
                     }}
                 >
                     <img style={{ height: '100%', width: '100%', objectFit: "contain" }} src={d.strDrinkThumb} />
-                    {/* {cocktailList.indexOf(d)}.&nbsp;  */}
                     <div style={{ width: "80%", marginLeft: "10%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", lineHeight: "1.5em", height: "1.5em" }}>
                         {d.strDrink}
                     </div>
@@ -205,7 +201,6 @@ function Cocktails() {
                     combinedIngredients.push(measurementsList[i] + " " + ingredientsList[i])
                 }
             }
-            // edge case where ingredient is listed without measurement (i.e. margarita recipe)
             if (ingredientsList[i] && !measurementsList[i]) {
                 
                 combinedIngredients.push(ingredientsList[i])
@@ -253,21 +248,12 @@ function Cocktails() {
                                 justifySelf: "center",
                                 alignSelf: "center",
                                 display: "block",
-                                // border: "#ff6505 solid",
                                 backgroundColor: "black",
                                 height: "auto",
                                 width: "80vw",
                                 zIndex: "102",
-                                // padding: "10px 0px 10px 0px",
-                                // borderRadius: "20px",
                             }}
-
-                        // onClick={() => {
-                        //     parseDrink();
-                        // }}
                         >
-
-                            {/* {cocktailList[currentDrink].strDrink} */}
                             <div style={{ width: "40%", height: "100%", float: "left" }}>
 
 
@@ -297,7 +283,6 @@ function Cocktails() {
                                         height: "10%",
                                         fontSize: "40px",
                                         marginRight: "5px",
-                                        // color: "#cdab4b"
                                     }}
                                     onClick={() => {
                                         setCD(-1)
@@ -330,8 +315,6 @@ function Cocktails() {
                                         {instructionsRendered(cd.steps)}
                                     </ol>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -357,21 +340,12 @@ function Cocktails() {
                                 justifySelf: "center",
                                 alignSelf: "center",
                                 display: "block",
-                                // border: "#ff6505 solid",
                                 backgroundColor: "black",
                                 height: "auto",
                                 width: "80vw",
                                 zIndex: "102",
-                                // padding: "10px 0px 10px 0px",
-                                // borderRadius: "20px",
                             }}
-
-                        // onClick={() => {
-                        //     parseDrink();
-                        // }}
                         >
-
-                            {/* {cocktailList[currentDrink].strDrink} */}
                             <div style={{ width: "100%", height: "100%", float: "left" }}>
                                 <div
                                     style={{
@@ -380,7 +354,6 @@ function Cocktails() {
                                         height: "10%",
                                         fontSize: "40px",
                                         marginRight: "5px",
-                                        // color: "#cdab4b"
                                     }}
                                     onClick={() => {
                                         setCD(-1)
@@ -459,12 +432,25 @@ function Cocktails() {
                         </div>
                     ) : (<div />)}
 
-
-
                     <div className='navPadding' />
-                    <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
-                    <div className="message">or</div>
-                    <a href='/' className="downloadButton">Return to the main page</a>
+
+                    
+                    {(windowDimensions.width > 900) ? (
+                        <div className="message">
+                            <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto' }}>Click here to get started</Link>
+                            <div className="message">or</div>
+                            <a href='/' className="downloadButton">Return to the main page</a>
+                        </div>
+                    ) : (
+                        <div className="message" style={{width: "80%"}}>
+                            <Link className="downloadButton" to="content" smooth={true} duration={500} spy={true} style={{ height: 'auto', display: "inline" }}>Click here to get started</Link>
+                            <div className="message" style={{ height: 'auto', display: "inline", marginLeft:"5%", marginRight:"5%"}}>or</div>
+                            <a href='/' className="downloadButton" style={{ height: 'auto', display: "inline" }}>Return to the main page</a>
+                        </div>
+                    )}
+
+                    
+                    
                 </Fade>
             </div>
 
