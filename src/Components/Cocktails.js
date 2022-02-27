@@ -457,9 +457,13 @@ function Cocktails() {
     return (
         <div>
             {drinkModal()}
-            <ParticlesBg type="cobweb" color={["#cdab4b"]} bg={{ position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "black" }} num={300} />
-            <div className="testLanding">
-
+            
+            <div className="testLanding" style={{height: "80vh"}}>
+                {(windowDimensions.width > 900) ? (
+                    <ParticlesBg type="cobweb" color={["#cdab4b"]} bg={{ position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "black" }} num={300} />
+                ) : (
+                    <ParticlesBg type="cobweb" color={["#cdab4b"]} bg={{ position: "absolute", zIndex: -1, top: 0, left: 0, backgroundColor: "black" }} num={100} />
+                )}
                 <Fade>
                     <div className='Title'>
                         Cocktail Recipies

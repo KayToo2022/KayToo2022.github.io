@@ -40,8 +40,8 @@ a:hover {
 }
 
 .testLanding {
-    min-height: 100vh;
-    height: auto;
+    height: 100vh;
+    /* height: auto; */
     width: 100%;
     /* display: flex; */
     display: flex;
