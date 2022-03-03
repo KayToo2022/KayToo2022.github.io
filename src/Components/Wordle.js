@@ -510,7 +510,7 @@ function Wordle() {
                 <div>
                     {renderGuesses()}
                 </div>
-                <div style={{display: "block", width: "100%", height: "1px"}}/>
+                {/* <div style={{display: "block", width: "100%", height: "1px"}}/> */}
                 {(guessCount < 6) ? (
                     <div>
                         {renderCurrent()}
@@ -586,20 +586,32 @@ function Wordle() {
             }}>
                 Submit
             </button>
-            <button 
-                onClick={() => {
-                    resetGame()
-                    if (!win) {
-                        setWinStreak(0)
-                        setWinCount(0)
-                    }
-                    
-                }}
-                className="wordleReset"
-                style={{marginLeft: "15px", padding: "11px"}}
-            >
-                Reset
-            </button>
+            {(win) ? (
+                <button 
+                    onClick={() => {
+                        resetGame()
+                    }}
+                    className="wordleButton"
+                    style={{marginLeft: "15px", padding: "11px"}}
+                >
+                    Continue
+                </button>
+            ) : (
+                <button 
+                    onClick={() => {
+                        resetGame()
+                        if (!win) {
+                            setWinStreak(0)
+                        }
+                        
+                    }}
+                    className="wordleReset"
+                    style={{marginLeft: "15px", padding: "11px"}}
+                >
+                    Reset
+                </button>
+            )}
+            
             </div>
             <br/>
             {/* <div>
