@@ -572,7 +572,20 @@ function Wordle() {
                     }
                 }}
             />
-            <button 
+           
+            {(win) ? (
+                <button 
+                    onClick={() => {
+                        resetGame()
+                    }}
+                    className="wordleButton"
+                    style={{marginLeft: "15px", padding: "11px"}}
+                >
+                    Continue
+                </button>
+            ) : (
+                <div style={{display: "inline"}}>
+                <button 
                 className="wordleButton"
                 style={{marginLeft: "15px", padding: "11px"}}
                 onClick={() => {
@@ -586,17 +599,6 @@ function Wordle() {
             }}>
                 Submit
             </button>
-            {(win) ? (
-                <button 
-                    onClick={() => {
-                        resetGame()
-                    }}
-                    className="wordleButton"
-                    style={{marginLeft: "15px", padding: "11px"}}
-                >
-                    Continue
-                </button>
-            ) : (
                 <button 
                     onClick={() => {
                         resetGame()
@@ -610,6 +612,7 @@ function Wordle() {
                 >
                     Reset
                 </button>
+                </div>
             )}
             
             </div>
