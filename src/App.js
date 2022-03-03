@@ -24,6 +24,7 @@ import Portfolio from "./Components/Portfolio"
 import Cocktails from "./Components/Cocktails"
 import TestSpace from "./Components/TestSpace"
 import SkillBar from "./Components/skill_bar/SkillBar"
+import Wordle from "./Components/Wordle"
 
 function App() {
 
@@ -91,10 +92,13 @@ function App() {
         <Route path='/cocktails' element={
           <Cocktails/>
         }/>
+        <Route path='/wordle' element={
+          <Wordle/>
+        }/>
       </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>
           <p style={{fontSize:'12px', color:'gray'}}>
-            v2.2.8
+            v3.0.0
           </p>
         </div>
       

@@ -241,3 +241,51 @@ h1 {
     color: black;
     transition: 0.5s;
 }
+
+.wordleLetter {
+    height: 36px;
+    width: 28px;
+    border: 1px gray solid;
+}
+
+.wordleButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: green;
+    text-decoration: none;
+    border: 1px solid green;
+}
+
+.wordleButton:hover {
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+}
+
+.wordleReset {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: red;
+    text-decoration: none;
+    border: 1px solid red;
+}
+
+.wordleReset:hover {
+    background-color: red;
+    color: white;
+    transition: 0.5s;
+}
