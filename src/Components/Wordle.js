@@ -457,7 +457,32 @@ function Wordle() {
                 <div>{t}</div>
                 <div>{m}</div>
                 {/* add the backspace and enter keys in bottom row */}
-                <div>{b}</div>
+                <div>
+                    <div 
+                        className="wordleLetter"  
+                        style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", width: "auto"}}
+                        onClick={() => {
+                            if (guessCount <= 5 && win == false) {
+                                submitGuess(currentGuess.toLowerCase())
+                                
+                            } else {
+                                resetGame()
+                            }
+                        }}  
+                    >
+                        Enter
+                    </div>
+                    {b}
+                    <div 
+                        className="wordleLetter"  
+                        style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", width: "auto"}}
+                        onClick={() => {
+                            setGuess(currentGuess.substr(0,currentGuess.length -1 ))
+                        }}  
+                    >
+                        Delete
+                    </div>
+                </div>
             </div>
         )
     }
@@ -551,9 +576,11 @@ function Wordle() {
                 className="wordleButton"
                 style={{marginLeft: "15px", padding: "11px"}}
                 onClick={() => {
-                    if (guessCount <= 6 && win == false) {
+                    if (guessCount <= 5 && win == false) {
                         submitGuess(currentGuess.toLowerCase())
                         
+                    } else {
+                        resetGame()
                     }
                 
             }}>
