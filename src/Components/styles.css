@@ -244,7 +244,7 @@ h1 {
 
 .wordleLetter {
     height: 36px;
-    width: 30px;
+    width: 36px;
     border: 1px gray solid;
 }
 
@@ -288,4 +288,44 @@ h1 {
     background-color: red;
     color: white;
     transition: 0.5s;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+.wordleGuess {
+    background-color: black;
+    width: 20vw;
+    margin: 10px;
+    height: 50px;
+    text-align: center;
+    
+    /* line-height: 75px;
+    font-size: 30px; */
+}
+
+.square {
+    position: relative;
+    width: 20%;
+    max-width: 62px;
+    border: 1px gray solid;
+    margin: 2px;
+}
+  
+.square:after {
+    content: "";
+    display: block;
+    padding-top: 50%;
+    padding-bottom: 50%;
+}
+
+.content {
+    transform: translateY(25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

@@ -15,6 +15,7 @@ function getWindowDimensions() {
 function Wordle() {
 
     const [devTools, toggleDev] = useState(0);
+    const [hardReset, toggleHardReset] = useState(0);
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     const [currentWord, setWord] = useState("");
@@ -46,6 +47,18 @@ function Wordle() {
     var wordList = ["tower", "water", "actor", "agent"]
 
     useEffect(() => {
+
+        if (document.cookie
+                .split(";")
+                .some(item => item.trim().startsWith("k2wsr="))) {
+                    console.log(document.cookie.split('; ').find(row => row.startsWith('k2wsr=')))
+                    var cookieData = document.cookie.split('; ').find(row => row.startsWith('k2wsr=')).split('=')[1].split(',')
+                    console.log(cookieData)
+                    setWinCount(parseInt(cookieData[0]))
+                    setWinStreak(parseInt(cookieData[1]))
+        } else {
+            document.cookie= "k2wsr=0,0"
+        }
         
         fetch(words1)
             .then(r => r.text())
@@ -72,6 +85,15 @@ function Wordle() {
     useEffect(() => {
         generateWord()
     }, [wordBank])
+
+    useEffect(() => {
+        if (winCount != 0) {
+            document.cookie = `k2wsr=${winCount},${winStreak}`
+        }
+        
+    }, [winCount, winStreak])
+
+    
 
     const generateWord = () => {
         // for now get word from wordlist
@@ -162,6 +184,7 @@ function Wordle() {
                 toggleShowWord(true)
                 // resetGame()
             }
+            
         }
         return ret
     }
@@ -172,7 +195,7 @@ function Wordle() {
         }
 
         const guesses = guessHistory.map((g) => (
-            <div style={{height: "40px", width: "100%", marginBottom: "2px"}}>
+            <div style={{width: "100%", marginBottom: "2px"}}>
                 {renderGuess(g)}
             </div>
         ))
@@ -186,25 +209,31 @@ function Wordle() {
     const renderGuess = (i) => {
         const c = i.map((c) => (
             (c[1] == 0) ? (
-                <div className="wordleLetter" style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}>
-                    {c[0].toUpperCase()}
+                <div className="square" style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}>
+                    <div className="content">
+                        {c[0].toUpperCase()}
+                    </div>    
                 </div>
             ) : (
                 (c[1] == 1) ? (
-                    <div className="wordleLetter"  style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}>
-                        {c[0].toUpperCase()}
+                    <div className="square"  style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}>
+                        <div className="content">
+                            {c[0].toUpperCase()}
+                        </div>
                     </div>
                 ) : (
                     (c[1] == -1) ? (
-                        <div className="wordleLetter"  style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
-                            {c[0].toUpperCase()}
+                        <div className="square"  style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                            <div className="content">
+                                {c[0].toUpperCase()}
+                            </div>
                         </div>
                     ) : (<div>error</div>)
                 )
             )   
         ))
         return (
-            <div>
+            <div className="flexbox">
                 {c}
             </div>
         )
@@ -215,29 +244,58 @@ function Wordle() {
             // have this be a bar with character height
             return (
                 <div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
                 </div>
             )
         }
 
         const r = currentGuess.split('').map((c) => (
-            <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px", fontWeight: "bold"}}>
-                {c[0].toUpperCase()}
-            </div>
+            <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            {c[0].toUpperCase()}
+                        </div>    
+                    </div>
+
         ))
 
         var filler = 5 - r.length
 
         for (var i = 0; i < filler; i++) {
-            r.push(<div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>)
+            r.push(
+                <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                    <div className="content">
+                        
+                    </div>    
+                </div>
+            )
         }
 
         return (
-            <div style={{display: "block"}}>
+            <div>
                 {r}
             </div>
         )
@@ -472,10 +530,10 @@ function Wordle() {
 
         return (
             <div>
-                <div>{t}</div>
-                <div>{m}</div>
+                <div className="flexbox">{t}</div>
+                <div className="flexbox">{m}</div>
                 {/* add the backspace and enter keys in bottom row */}
-                <div>
+                <div className="flexbox">
                     <div 
                         className="wordleLetter"  
                         style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", width: "auto"}}
@@ -516,11 +574,31 @@ function Wordle() {
         for (var i = 0; i < rowsLeft; i++) {
             rows.push(
                 <div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
-                    <div className="wordleLetter" style={{display: "inline-block", margin: "1px", padding:"1px"}}>_</div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
+                    <div className="square" style={{display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}>
+                        <div className="content">
+                            
+                        </div>    
+                    </div>
                 </div>
             )
         }
@@ -530,7 +608,7 @@ function Wordle() {
                 <div>
                     {renderGuesses()}
                 </div>
-                {/* <div style={{display: "block", width: "100%", height: "1px"}}/> */}
+                {/* <div style={{display: "block", width: "100%", height: "3px"}}/> */}
                 {(guessCount < 6) ? (
                     <div>
                         {renderCurrent()}
@@ -547,138 +625,147 @@ function Wordle() {
     }
 
     return (
-        <div className="testLanding">
-            {(devTools == 3) ? (
-                <div style={{position: "absolute", backgroundColor: "red", top: "0px", right: "0px"}}>
-                    w: {windowDimensions.width}, h: {windowDimensions.height}
-                </div>
-            ) : (
-                null
-            )}
+        <div className="testLanding" style={{height: "auto"}}>
+            <div style={{width: "100%", maxWidth: "750px"}}>
+                {(devTools == 3) ? (
+                    <div  
+                        onClick={() => {
+                            toggleHardReset(hardReset + 1)
+                            if (hardReset == 2) {
+                                document.cookie= "k2wsr=0,0"
+                                setWinCount(parseInt(0))
+                                setWinStreak(parseInt(0))
+                                toggleHardReset(0)
+                            }
+                        }} 
+                        style={{position: "absolute", backgroundColor: "red", top: "0px", right: "0px"}}
+                    >
+                        w: {windowDimensions.width}, h: {windowDimensions.height}
+                    </div>
+                ) : (
+                    null
+                )}
 
-            Wordle sim
-            <div>
-                Wins: {winCount}, Winstreak: {winStreak}
-            </div>
+                Wordle sim
+                <br/>
 
-            <br/>
-            <br/>
-
-            <div>
-                {renderWorkspace()}
-            </div>
-            {(showWord) ? (
-                <div>{currentWord}</div>
-            ) : (null)}
-            {(showIssue) ? (
-                <div>{issue}</div>
-            ) : (null)}
-            {(devTools == 3) ? (
-                <div>
-                    {currentWord}
-                </div>
-            ) : (
-                null
-            )}
-            <br/>
-            <div>
-            <input
-                className="ctButton"
-                style={{margin: "none", marginTop:"0", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px"}}
                 
-                value={currentGuess}
-                onChange={(e)=>{
-                    toggleIssue(false)
-                    if (win || guessCount >=6) {
-                        resetGame()
-                    }
+                <div>
+                    Wins: {winCount}, Winstreak: {winStreak}
+                </div>
 
-                    var temp = e.target.value.substr(0,5)
+                <br/>
 
-
-                    setGuess(temp)
-
-                }}
-                onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
+                <div>
+                    {renderWorkspace()}
+                </div>
+                {(showWord) ? (
+                    <div>{currentWord}</div>
+                ) : (null)}
+                {(showIssue) ? (
+                    <div>{issue}</div>
+                ) : (null)}
+                {(devTools == 3) ? (
+                    <div>
+                        {currentWord}
+                    </div>
+                ) : (
+                    null
+                )}
+                <br/>
+                <div className="flexbox">
+                <input
+                    className="ctButton"
+                    style={{marginLeft: "5%", marginRight: "5%",marginTop:"0", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px", width: "30%", justifyContent: "center"}}
+                    
+                    value={currentGuess}
+                    onChange={(e)=>{
+                        toggleIssue(false)
                         if (win || guessCount >=6) {
                             resetGame()
                         }
-                        submitGuess(currentGuess.toLowerCase())
-                    }
-                }}
-            />
-           
-            {(win) ? (
-                <button 
-                    onClick={() => {
-                        resetGame()
+
+                        var temp = e.target.value.substr(0,5)
+
+
+                        setGuess(temp)
+
                     }}
-                    className="wordleButton"
-                    style={{marginLeft: "15px", padding: "11px"}}
-                >
-                    Continue
-                </button>
-            ) : (
-                <div style={{display: "inline"}}>
-                <button 
-                className="wordleButton"
-                style={{marginLeft: "15px", padding: "11px"}}
-                onClick={() => {
-                    if (guessCount <= 5 && win == false) {
-                        submitGuess(currentGuess.toLowerCase())
-                        
-                    } else {
-                        resetGame()
-                    }
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            if (win || guessCount >=6) {
+                                resetGame()
+                            }
+                            submitGuess(currentGuess.toLowerCase())
+                        }
+                    }}
+                />
+            
+                {(win) ? (
+                    <button 
+                        onClick={() => {
+                            resetGame()
+                        }}
+                        className="wordleButton"
+                        style={{padding: "11px", marginRight: "5%", width: "60%"}}
+                    >
+                        Continue
+                    </button>
+                ) : (
+                    <div style={{display: "inline", marginRight: "5%", width: "60%"}}>
+                        <button 
+                            className="wordleButton"
+                            style={{padding: "11px", width: "40%", marginRight: "5%"}}
+                            onClick={() => {
+                                if (guessCount <= 5 && win == false) {
+                                    submitGuess(currentGuess.toLowerCase())
+                                    
+                                } else {
+                                    resetGame()
+                                }
+                            
+                        }}>
+                            Submit
+                        </button>
+                        <button 
+                            onClick={() => {
+                                console.log(devTools)
+                                if (guessCount == 0){
+                                    if (devTools == 3) {
+                                        toggleDev(0)
+                                    } else {
+                                        toggleDev(devTools + 1)
+                                    }
+                                } else {
+                                    toggleDev(0)
+                                }
+                                resetGame()
+                                if (!win) {
+                                    setWinStreak(0)
+                                }
+                                
+                            }}
+                            className="wordleReset"
+                            style={{padding: "11px", width: "40%"}}
+                        >
+                            Reset
+                        </button>
+                    </div>
+                )}
                 
-            }}>
-                Submit
-            </button>
-                <button 
-                    onClick={() => {
-                        console.log(devTools)
-
-                        if (devTools % 4 == 3) {
-                            toggleDev(0)
-                        } else {
-                            toggleDev(devTools + 1)
-                        }
-
-                        resetGame()
-                        if (!win) {
-                            setWinStreak(0)
-                        }
-                        
-                    }}
-                    className="wordleReset"
-                    style={{marginLeft: "15px", padding: "11px"}}
-                >
-                    Reset
-                </button>
                 </div>
-            )}
-            
-            </div>
 
-            
+                <br/>
+                <div>
+                    {renderKeyBoard()}
+                </div>
+                <br/>
+                <div>
+                    <a href='/' className="wordleButton">Return to the main page</a>
+                </div>
 
-            <br/>
-            {/* <div>
-                {renderGuesses()}
+                <br/>
             </div>
-            <div>{renderCurrent()}</div> */}
-            <br/>
-            <div>
-                {renderKeyBoard()}
-            </div>
-            <br/>
-            <div>
-                <a href='/' className="wordleButton">Return to the main page</a>
-            </div>
-
-            <br/>
-            
         </div>
     )
 }
