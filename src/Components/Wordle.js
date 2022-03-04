@@ -13,6 +13,9 @@ function getWindowDimensions() {
 }
 
 function Wordle() {
+
+    const [devTools, toggleDev] = useState(0);
+
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     const [currentWord, setWord] = useState("");
     const [currentGuess, setGuess] = useState("");
@@ -80,6 +83,9 @@ function Wordle() {
     }
 
     const resetGame = () => {
+        
+
+
         generateWord()
         setCount(0)
         setHistory([])
@@ -244,6 +250,7 @@ function Wordle() {
                     className="wordleLetter"  
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
+                        toggleIssue(false)
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -260,6 +267,7 @@ function Wordle() {
                         className="wordleLetter"  
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
+                            toggleIssue(false)
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -276,6 +284,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -292,6 +301,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -314,6 +324,7 @@ function Wordle() {
                     className="wordleLetter"  
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
+                        toggleIssue(false)
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -331,6 +342,7 @@ function Wordle() {
                         className="wordleLetter"  
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
+                            toggleIssue(false)
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -348,6 +360,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -364,6 +377,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -386,6 +400,7 @@ function Wordle() {
                     className="wordleLetter"  
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
+                        toggleIssue(false)
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -403,6 +418,7 @@ function Wordle() {
                         className="wordleLetter"  
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
+                            toggleIssue(false)
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -420,6 +436,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -436,6 +453,7 @@ function Wordle() {
                             className="wordleLetter"  
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
+                                toggleIssue(false)
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -462,6 +480,7 @@ function Wordle() {
                         className="wordleLetter"  
                         style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", width: "auto"}}
                         onClick={() => {
+                            toggleIssue(false)
                             if (guessCount <= 5 && win == false) {
                                 submitGuess(currentGuess.toLowerCase())
                                 
@@ -477,6 +496,7 @@ function Wordle() {
                         className="wordleLetter"  
                         style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", width: "auto"}}
                         onClick={() => {
+                            toggleIssue(false)
                             setGuess(currentGuess.substr(0,currentGuess.length -1 ))
                         }}  
                     >
@@ -528,6 +548,14 @@ function Wordle() {
 
     return (
         <div className="testLanding">
+            {(devTools == 3) ? (
+                <div style={{position: "absolute", backgroundColor: "red", top: "0px", right: "0px"}}>
+                    w: {windowDimensions.width}, h: {windowDimensions.height}
+                </div>
+            ) : (
+                null
+            )}
+
             Wordle sim
             <div>
                 Wins: {winCount}, Winstreak: {winStreak}
@@ -535,6 +563,7 @@ function Wordle() {
 
             <br/>
             <br/>
+
             <div>
                 {renderWorkspace()}
             </div>
@@ -544,6 +573,13 @@ function Wordle() {
             {(showIssue) ? (
                 <div>{issue}</div>
             ) : (null)}
+            {(devTools == 3) ? (
+                <div>
+                    {currentWord}
+                </div>
+            ) : (
+                null
+            )}
             <br/>
             <div>
             <input
@@ -601,6 +637,14 @@ function Wordle() {
             </button>
                 <button 
                     onClick={() => {
+                        console.log(devTools)
+
+                        if (devTools % 4 == 3) {
+                            toggleDev(0)
+                        } else {
+                            toggleDev(devTools + 1)
+                        }
+
                         resetGame()
                         if (!win) {
                             setWinStreak(0)
@@ -616,6 +660,9 @@ function Wordle() {
             )}
             
             </div>
+
+            
+
             <br/>
             {/* <div>
                 {renderGuesses()}
