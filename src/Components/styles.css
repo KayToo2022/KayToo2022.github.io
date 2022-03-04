@@ -311,7 +311,7 @@ h1 {
 .square {
     position: relative;
     width: 20%;
-    max-width: 62px;
+    max-width: 50px;
     border: 1px gray solid;
     margin: 2px;
 }
