@@ -646,8 +646,8 @@ function Wordle() {
                     null
                 )}
 
-                Wordle sim
-                <br/>
+                {/* Wordle sim
+                <br/> */}
 
                 
                 <div>
