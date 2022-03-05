@@ -879,6 +879,7 @@ function Wordle() {
                                     toggleDev(0)
                                 }
                                 resetGame()
+                                toggleStarted(false)
                                 if (!win) {
                                     setWinStreak(0)
                                     if (guessCount <= 5) {
