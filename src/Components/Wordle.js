@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import rs from "random-seed"
 import words1 from "./files/shuffled_real_wordles.txt"
 import words2 from "./files/combined_wordlist.txt"
 
@@ -38,22 +39,31 @@ function Wordle() {
     const [showWord, toggleShowWord] = useState(false);
     const [showIssue, toggleIssue] = useState(false);
 
+    const [started, toggleStarted] = useState(false);
+    const [startTime, setStartTime] = useState(0);
+    const [endTime, setEndTime] = useState(0);
+    const [totalTime, setTotalTime] = useState(0);
+
     const [issue, setIssue] = useState("")
+
+    const [seed, setSeed] = useState(0)
+
+    var gen = require('random-seed')
+
+    const [wordSeed, setWordSeed] = useState(0)
+    const [tempSeed, submitSeed] = useState(0)
+
+    
 
     const kbTop = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p']
     const kbMid = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
-    const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
-
-    var wordList = ["tower", "water", "actor", "agent"]
+    const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
 
     useEffect(() => {
-
         if (document.cookie
                 .split(";")
                 .some(item => item.trim().startsWith("k2wsr="))) {
-                    console.log(document.cookie.split('; ').find(row => row.startsWith('k2wsr=')))
                     var cookieData = document.cookie.split('; ').find(row => row.startsWith('k2wsr=')).split('=')[1].split(',')
-                    console.log(cookieData)
                     setWinCount(parseInt(cookieData[0]))
                     setWinStreak(parseInt(cookieData[1]))
         } else {
@@ -72,8 +82,6 @@ function Wordle() {
                 setGuessBank(text.split('\n'))
             })
         
-
-        
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
         }
@@ -83,31 +91,53 @@ function Wordle() {
     }, []);
 
     useEffect(() => {
-        generateWord()
+        setSeed(Math.floor(Math.random() * 10000))
+        // generateWord()
     }, [wordBank])
+
+    useEffect(() => {
+
+        var randGen = gen(seed);
+        setWordSeed(randGen.range(wordBank.length))
+    }, [seed])
+
+    useEffect(() => {
+        generateWord()
+    }, [wordSeed])
 
     useEffect(() => {
         if (winCount != 0) {
             document.cookie = `k2wsr=${winCount},${winStreak}`
         }
         
-    }, [winCount, winStreak])
+    }, [winCount, winStreak]) 
 
-    
+    useEffect(() => {
+        if (started) {
+            var st = Date.now()
+            setStartTime(st)
+        } else {
+            var et = Date.now()
+            setStartTime(et)
+        }
+        
+    }, [started])
+
+    useEffect(() => {
+        if (endTime > startTime && win) {
+            console.log(endTime - startTime)
+            setTotalTime(endTime-startTime)
+        }
+    }, [endTime])
 
     const generateWord = () => {
-        // for now get word from wordlist
-        var rand = Math.floor(Math.random() * wordBank.length)
-        // console.log(rand)
-        var word = wordBank[Math.floor(Math.random() * wordBank.length)]
-        // console.log(word)
+        var rand = wordSeed
+        var word = wordBank[wordSeed]
+        //var word = wordBank[Math.floor(Math.random() * wordBank.length)]
         setWord(word)
     }
 
     const resetGame = () => {
-        
-
-
         generateWord()
         setCount(0)
         setHistory([])
@@ -117,6 +147,7 @@ function Wordle() {
         setWrong([])
         setMissed([])
         toggleShowWord(false)
+        setSeed(Math.floor(Math.random() * 10000))
     }
 
     const submitGuess = (guess) => {
@@ -177,11 +208,17 @@ function Wordle() {
             if (didWin) {
                 setWinCount(winCount + 1)
                 setWinStreak(winStreak + 1)
+                toggleStarted(false)
+                setEndTime(Date.now())
+                
                 // resetGame()
             }
             if (!didWin && guessCount >= 5) {
                 setWinStreak(0)
                 toggleShowWord(true)
+                toggleStarted(false)
+                setEndTime(Date.now())
+                
                 // resetGame()
             }
             
@@ -309,6 +346,10 @@ function Wordle() {
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
                         toggleIssue(false)
+                        if (!started) {
+                            toggleStarted(true)
+                        }
+                        toggleIssue(false)
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -326,6 +367,9 @@ function Wordle() {
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
                             toggleIssue(false)
+                            if (!started) {
+                                toggleStarted(true)
+                            }
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -343,6 +387,9 @@ function Wordle() {
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -360,6 +407,9 @@ function Wordle() {
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -383,6 +433,9 @@ function Wordle() {
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
                         toggleIssue(false)
+                        if (!started) {
+                            toggleStarted(true)
+                        }
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -401,6 +454,9 @@ function Wordle() {
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
                             toggleIssue(false)
+                            if (!started) {
+                                toggleStarted(true)
+                            }
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -419,6 +475,9 @@ function Wordle() {
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -436,6 +495,9 @@ function Wordle() {
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -459,6 +521,9 @@ function Wordle() {
                     style={{backgroundColor: "green", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "green"}}
                     onClick={() => {
                         toggleIssue(false)
+                        if (!started) {
+                            toggleStarted(true)
+                        }
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -477,6 +542,9 @@ function Wordle() {
                         style={{backgroundColor: "#cdab4b", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold", borderColor: "#cdab4b"}}
                         onClick={() => {
                             toggleIssue(false)
+                            if (!started) {
+                                toggleStarted(true)
+                            }
                             if (win || guessCount >=6) {
                                 resetGame()
                             }
@@ -495,6 +563,9 @@ function Wordle() {
                             style={{backgroundColor: "black", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -512,6 +583,9 @@ function Wordle() {
                             style={{backgroundColor: "gray", display: "inline-block", padding: "1px", margin: "1px", fontWeight: "bold"}}
                             onClick={() => {
                                 toggleIssue(false)
+                                if (!started) {
+                                    toggleStarted(true)
+                                }
                                 if (win || guessCount >=6) {
                                     resetGame()
                                 }
@@ -642,9 +716,34 @@ function Wordle() {
                     >
                         w: {windowDimensions.width}, h: {windowDimensions.height}
                     </div>
+                    
                 ) : (
                     null
                 )}
+
+                {(devTools == 3) ? (
+                    <div style={{position: "absolute", top: "0px", left: "0px"}}>
+                    <input
+                        
+                        onChange={(e) => {
+                            if (!isNaN(e.target.value)) {
+                                submitSeed(parseInt(e.target.value))
+                            } else {
+                                console.log("invalid")
+                            }
+                        }}
+                    />
+                    <button
+                        onClick={() => {
+                            setSeed(tempSeed)
+                            toggleDev(0)
+                            submitSeed(0)
+                        }}
+                    >Set Seed</button>
+                    </div>
+                ) : (
+                    null
+                )}  
 
                 Wordle sim
                 <br/>
@@ -659,19 +758,36 @@ function Wordle() {
                 <div>
                     {renderWorkspace()}
                 </div>
-                {(showWord) ? (
+
+                {/* {(showWord || devTools == 3) ? (
                     <div>{currentWord}</div>
-                ) : (null)}
+                ) : (
+                    (showIssue) ? (
+                        <div>{issue}</div>
+                    ) : (
+                        null
+                        )
+                    )}
                 {(showIssue) ? (
                     <div>{issue}</div>
-                ) : (null)}
-                {(devTools == 3) ? (
+                ) : (null)} */}
+                
+                {(win) ? (
                     <div>
-                        {currentWord}
+                        {(totalTime)/1000}s, Seed: {seed}
                     </div>
                 ) : (
-                    null
+                    (showWord || devTools == 3) ? (
+                        <div>{currentWord}, Seed: {seed}</div>
+                    ) : (
+                        (showIssue) ? (
+                            <div>{issue}</div>
+                        ) : (
+                            null
+                            )
+                        )
                 )}
+
                 <br/>
                 <div className="flexbox">
                 <input
@@ -681,6 +797,9 @@ function Wordle() {
                     value={currentGuess}
                     onChange={(e)=>{
                         toggleIssue(false)
+                        if (!started) {
+                            toggleStarted(true)
+                        }
                         if (win || guessCount >=6) {
                             resetGame()
                         }
@@ -729,7 +848,6 @@ function Wordle() {
                         </button>
                         <button 
                             onClick={() => {
-                                console.log(devTools)
                                 if (guessCount == 0){
                                     if (devTools == 3) {
                                         toggleDev(0)
