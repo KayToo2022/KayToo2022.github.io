@@ -147,7 +147,6 @@ function Wordle() {
         setWrong([])
         setMissed([])
         toggleShowWord(false)
-        console.log(seed, seed.toString().length)
         if (seed.toString().length > 4) {
             setSeed(seed + 1)
         } else {
@@ -744,8 +743,6 @@ function Wordle() {
                             setSeed(tempSeed)
                             toggleDev(0)
                             submitSeed(0)
-                            // console.log(toString(tempSeed))
-                            // console.log(toString(tempSeed).length)
                         }}
                     >Set Seed</button>
                     </div>
@@ -785,7 +782,7 @@ function Wordle() {
                         {(totalTime)/1000}s, Seed: {seed}
                     </div>
                 ) : (
-                    (showWord && seed.toString().length < 5) ? (
+                    ((showWord || devTools == 3) && seed.toString().length < 5) ? (
                         <div>{currentWord}, Seed: {seed}</div>
                     ) : (
                         (showIssue && seed.toString().length < 5) ? (
@@ -802,7 +799,7 @@ function Wordle() {
                     </div>
                 ) : (
                     ((showWord || devTools == 3) && seed.toString().length >= 5) ? (
-                        <div>{currentWord}, Seed: {seed}</div>
+                        <div>{currentWord}</div>
                     ) : (
                         (showIssue && seed.toString().length >= 5) ? (
                             <div>{issue}</div>
@@ -884,7 +881,11 @@ function Wordle() {
                                 resetGame()
                                 if (!win) {
                                     setWinStreak(0)
+                                    if (guessCount <= 5) {
+                                        setSeed(Math.floor(Math.random() * 10000))
+                                    }
                                 }
+
                                 
                             }}
                             className="wordleReset"
