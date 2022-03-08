@@ -3,6 +3,7 @@ import axios from "axios";
 import rs from "random-seed"
 import words1 from "./files/shuffled_real_wordles.txt"
 import words2 from "./files/combined_wordlist.txt"
+import { useParams } from "react-router";
 
 
 function getWindowDimensions() {
@@ -13,7 +14,7 @@ function getWindowDimensions() {
     };
 }
 
-function Wordle(props) {
+function Wordle() {
 
     const [devTools, toggleDev] = useState(0);
     const [hardReset, toggleHardReset] = useState(0);
@@ -54,31 +55,27 @@ function Wordle(props) {
     const [tempSeed, submitSeed] = useState(0)
     const [parsedSeed, setParsedSeed] = useState(-1)
 
-    
-
     const kbTop = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p']
     const kbMid = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
     const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
 
-    const urlData = window.location.href
+    var urlData = window.location.href
 
     useEffect(() => {
-        console.log("loaded")
-        
-        console.log(urlData)
 
         var urlSplit = urlData.split("wordle/")
 
-        console.log(urlSplit)
+
+
+        // if (!isNaN(parseInt(useParams().id))) {
+        //     var seedData = parseInt(useParams().id)
+        //     setParsedSeed(seedData)
+        // }
+
         if (urlSplit.length > 1){
             var seedData = parseInt(urlSplit[1])
-        
-            // console.log(seedData)
-
             setParsedSeed(seedData)
         }
-
-        
 
         if (document.cookie
                 .split(";")
@@ -105,14 +102,31 @@ function Wordle(props) {
         function handleResize() {
             setWindowDimensions(getWindowDimensions());
         }
+        function handleUrlChange() {
+            softReset()
 
+            urlData = window.location.href
+            var urlSplit = urlData.split("wordle/")
+
+
+            if (urlSplit.length > 1) {
+                setSeed(parseInt(urlSplit[1]))
+            }
+
+        }
+        window.addEventListener(
+            'hashchange',
+            handleUrlChange,
+            false
+        );
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+
+        
     }, []);
 
+
     useEffect(() => {
-        console.log("generating seed")
-        console.log("parsedSeed: ",parsedSeed)
         var temp = 0
 
         if (parsedSeed > -1) {
@@ -123,13 +137,11 @@ function Wordle(props) {
         }
         // var temp = Math.floor(Math.random() * 10000)
         
-        console.log(temp)
         setSeed(temp)
 
     }, [wordBank])
 
     useEffect(() => { 
-        console.log("seed generated, getting index")
         var randGen = gen(seed);
         setWordSeed(randGen.range(wordBank.length))
     }, [seed])
@@ -166,9 +178,20 @@ function Wordle(props) {
     const generateWord = () => {
         var rand = wordSeed
         var word = wordBank[wordSeed]
-        console.log(word)
         //var word = wordBank[Math.floor(Math.random() * wordBank.length)]
         setWord(word)
+    }
+
+    const softReset = () => {
+        generateWord()
+        setCount(0)
+        setHistory([])
+        setWin(false)
+        setGuess("")
+        setRight([])
+        setWrong([])
+        setMissed([])
+        toggleShowWord(false)
     }
 
     const resetGame = () => {
@@ -853,7 +876,6 @@ function Wordle(props) {
                     value={currentGuess}
                     onChange={(e)=>{
                         toggleIssue(false)
-                        // console.log(e.target.value)
                         if (!started) {
                             toggleStarted(true)
                         }
