@@ -13,7 +13,7 @@ function getWindowDimensions() {
     };
 }
 
-function Wordle() {
+function Wordle(props) {
 
     const [devTools, toggleDev] = useState(0);
     const [hardReset, toggleHardReset] = useState(0);
@@ -52,6 +52,7 @@ function Wordle() {
 
     const [wordSeed, setWordSeed] = useState(0)
     const [tempSeed, submitSeed] = useState(0)
+    const [parsedSeed, setParsedSeed] = useState(-1)
 
     
 
@@ -59,7 +60,26 @@ function Wordle() {
     const kbMid = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
     const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
 
+    const urlData = window.location.href
+
     useEffect(() => {
+        console.log("loaded")
+        
+        console.log(urlData)
+
+        var urlSplit = urlData.split("wordle/")
+
+        console.log(urlSplit)
+        if (urlSplit.length > 1){
+            var seedData = parseInt(urlSplit[1])
+        
+            // console.log(seedData)
+
+            setParsedSeed(seedData)
+        }
+
+        
+
         if (document.cookie
                 .split(";")
                 .some(item => item.trim().startsWith("k2wsr="))) {
@@ -91,12 +111,25 @@ function Wordle() {
     }, []);
 
     useEffect(() => {
-        setSeed(Math.floor(Math.random() * 10000))
-        // generateWord()
+        console.log("generating seed")
+        console.log("parsedSeed: ",parsedSeed)
+        var temp = 0
+
+        if (parsedSeed > -1) {
+            temp = parsedSeed
+            setParsedSeed(-1)
+        } else {
+            temp = Math.floor(Math.random() * 10000)
+        }
+        // var temp = Math.floor(Math.random() * 10000)
+        
+        console.log(temp)
+        setSeed(temp)
+
     }, [wordBank])
 
-    useEffect(() => {
-
+    useEffect(() => { 
+        console.log("seed generated, getting index")
         var randGen = gen(seed);
         setWordSeed(randGen.range(wordBank.length))
     }, [seed])
@@ -133,6 +166,7 @@ function Wordle() {
     const generateWord = () => {
         var rand = wordSeed
         var word = wordBank[wordSeed]
+        console.log(word)
         //var word = wordBank[Math.floor(Math.random() * wordBank.length)]
         setWord(word)
     }
@@ -619,14 +653,15 @@ function Wordle() {
                         onClick={() => {
                             toggleIssue(false)
                             if (guessCount <= 5 && win == false) {
-                                submitGuess(currentGuess.toLowerCase())
+                                // submitGuess(currentGuess.toLowerCase())
+                                setGuess("")
                                 
                             } else {
                                 resetGame()
                             }
                         }}  
                     >
-                        Enter
+                        Clear
                     </div>
                     {b}
                     <div 
@@ -778,7 +813,7 @@ function Wordle() {
                 ) : (null)} */}
                 
                 {(win && seed.toString().length < 5) ? (
-                    <div>
+                    <div className="links" onClick={() => {navigator.clipboard.writeText(`${urlData.split("wordle/")[0]}wordle/${seed}`)}}>
                         {(totalTime)/1000}s, Seed: {seed}
                     </div>
                 ) : (
@@ -818,6 +853,7 @@ function Wordle() {
                     value={currentGuess}
                     onChange={(e)=>{
                         toggleIssue(false)
+                        // console.log(e.target.value)
                         if (!started) {
                             toggleStarted(true)
                         }

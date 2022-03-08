@@ -95,10 +95,13 @@ function App() {
         <Route path='/wordle' element={
           <Wordle/>
         }/>
+        <Route path='/wordle/:id' element={
+          <Wordle/>
+        }/>
       </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>
           <p style={{fontSize:'12px', color:'gray'}}>
-            v3.3.1
+            v3.4.0
           </p>
         </div>
       

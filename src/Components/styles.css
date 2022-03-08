@@ -23,6 +23,10 @@
     padding-top: 10px;
 }
 
+.links:hover {
+    color: skyblue
+}
+
 a:hover {
     color: skyblue
 }
