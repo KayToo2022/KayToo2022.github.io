@@ -813,7 +813,7 @@ function Wordle(props) {
                 ) : (null)} */}
                 
                 {(win && seed.toString().length < 5) ? (
-                    <div className="links" onClick={() => {navigator.clipboard.writeText(`${urlData.split("wordle/")[0]}wordle/${seed}`)}}>
+                    <div className="links" onClick={() => {navigator.clipboard.writeText(`${urlData.split("wordle")[0]}wordle/${seed}`)}}>
                         {(totalTime)/1000}s, Seed: {seed}
                     </div>
                 ) : (
