@@ -3,7 +3,8 @@ import axios from "axios";
 import rs from "random-seed"
 import words1 from "./files/shuffled_real_wordles.txt"
 import words2 from "./files/combined_wordlist.txt"
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
+import { useNavigate } from 'react-router-dom';
 
 
 function getWindowDimensions() {
@@ -60,6 +61,8 @@ function Wordle() {
     const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
 
     var urlData = window.location.href
+
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -195,6 +198,9 @@ function Wordle() {
     }
 
     const resetGame = () => {
+        
+        navigate('/wordle')
+        
         generateWord()
         setCount(0)
         setHistory([])
