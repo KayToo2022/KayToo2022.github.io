@@ -875,7 +875,7 @@ function Wordle() {
                     ((showWord || devTools == 3) && seed.toString().length < 5) ? (
                         <div>
                             <div>
-                                Seed: {seed}
+                                Word: {currentWord} Seed: {seed}
                             </div>
                             <div className="links" onClick={() => {
                                     navigator.clipboard.writeText(`This word is a tough one. See if you can solve it\n${urlData.split("wordle")[0]}wordle/${seed}`)}
