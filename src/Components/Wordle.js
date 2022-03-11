@@ -866,7 +866,7 @@ function Wordle() {
                             {(totalTime)/1000}s, Seed: {seed}
                         </div>
                         <div className="links" onClick={() => {
-                                navigator.clipboard.writeText(`Solved this wordle-like game in ${totalTime} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)}
+                                navigator.clipboard.writeText(`Solved this wordle-like game in ${(totalTime)/1000} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)}
                             }>
                             Copy to Clipboard
                         </div>
