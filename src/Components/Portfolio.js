@@ -28,13 +28,15 @@ function Portfolio() {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     const [cocktailImg, setCocktailImage] = useState("");
+    const [cocktailName, setCocktailName] = useState("");
 
     useEffect(() => {
 
         axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
         .then(
             (response) => {
-                // console.log(response.data.drinks[0].strDrinkThumb)
+                console.log(response.data.drinks[0])
+                setCocktailName(response.data.drinks[0].strDrink)
                 setCocktailImage(response.data.drinks[0].strDrinkThumb)
             }
         )
@@ -200,13 +202,14 @@ function Portfolio() {
                         </div>
                         <div className="gridBoxMobile">
                             <h1 className="major">Cocktail Recipes</h1>
+                            
                             <p className="minor" style={{color: "gray"}}>
                                 A cocktail recipe page powered by the CocktailDB API over 
-                                at <a style={{color: "gray"}} href='https://www.thecocktaildb.com/api.php'>TheCocktailDB</a>. (no affiliation)
+                                at <a style={{color: "gray"}} href='https://www.thecocktaildb.com/api.php'>TheCocktailDB</a> (no affiliation).
                                 This page lets you search for cocktails by name or by ingredient and allows you to pull up the recipe with no ads and no backstory.
                                 Just the ingredients, the instructions, and you.
                             </p>
-
+                            <p className="minor" style={{color: "gray"}}>Drink Shown: {cocktailName}</p>
                             <a href="/#/cocktails" target="_blank" className="downloadButton">
                                 Learn More
                             </a>
@@ -383,12 +386,14 @@ function Portfolio() {
                         </div>
                         <div className="gridBoxR">
                             <h1 className="major">Cocktail Recipes</h1>
+                            
                             <p className="minor">
                                 A cocktail recipe page powered by the CocktailDB API over 
                                 at <a style={{color: "gray"}} href='https://www.thecocktaildb.com/api.php'>TheCocktailDB</a>. (no affiliation)
                                 This page lets you search for cocktails by name or by ingredient and allows you to pull up the recipe with no ads and no backstory.
                                 Just the ingredients, the instructions, and you.
                             </p>
+                            <p className="minor" style={{color: "gray"}}>Drink Shown: {cocktailName}</p>
 
                             <a href="/#/cocktails" target="_blank" className="downloadButton">
                                 Learn More
