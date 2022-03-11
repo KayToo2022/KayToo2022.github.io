@@ -12,6 +12,9 @@ import Manifest from "./Images/Manifest.png"
 import SF from "./Images/SF.png"
 import Ship from "./Images/Ship.png"
 import Spheres from "./Images/Spheres.jpg"
+import WordlePic from "./Images/Wordle.jpg"
+
+import axios from "axios";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -24,8 +27,21 @@ function getWindowDimensions() {
 function Portfolio() {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    const [cocktailImg, setCocktailImage] = useState("");
 
     useEffect(() => {
+
+        axios.get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+        .then(
+            (response) => {
+                // console.log(response.data.drinks[0].strDrinkThumb)
+                setCocktailImage(response.data.drinks[0].strDrinkThumb)
+            }
+        )
+        .catch((e) => {
+            console.log(e)
+        })
+
         function handleResize() {
         setWindowDimensions(getWindowDimensions());
         }
@@ -170,6 +186,47 @@ function Portfolio() {
                                 Learn More
                             </a>
                         </div>
+                        <div className="gridBoxMobile navPadding"/>
+                        <div className="gridBoxMobile">
+                            <div className="resumeTitle underlined">
+                                <h1>Personal Projects</h1>
+                            </div>    
+                        </div>
+                        
+                        <div className="gridBoxMobile">
+                            <div>
+                                <img src={cocktailImg} className="gridBoxMobile" style={{width:'100%', marginTop:'16px'}}></img>
+                            </div>    
+                        </div>
+                        <div className="gridBoxMobile">
+                            <h1 className="major">Cocktail Recipes</h1>
+                            <p className="minor" style={{color: "gray"}}>
+                                A cocktail recipe page powered by the CocktailDB API over 
+                                at <a style={{color: "gray"}} href='https://www.thecocktaildb.com/api.php'>TheCocktailDB</a>. (no affiliation)
+                                This page lets you search for cocktails by name or by ingredient and allows you to pull up the recipe with no ads and no backstory.
+                                Just the ingredients, the instructions, and you.
+                            </p>
+
+                            <a href="/#/cocktails" target="_blank" className="downloadButton">
+                                Learn More
+                            </a>
+                        </div>
+                        <div className="gridBoxMobile">
+                            <div>
+                                <img src={WordlePic} className="gridBoxMobile" style={{width:'100%', marginTop:'16px'}}></img>
+                            </div>    
+                        </div>
+                        <div className="gridBoxMobile">
+                            <h1 className="major">Wordle Sim</h1>
+                            <p className="minor">
+                                An unlimited Wordle-like game for all of your word game needs. Wordle Sim is a Worldle-like clone that allows for limitless gameplay.
+                                Challenge yourself to guess the word as fast as possible or share your word with friends to see who is the faster wordler.
+                            </p>
+
+                            <a href="/#/wordle" target="_blank" className="downloadButton">
+                                Learn More
+                            </a>
+                        </div>
                     </div>
                 {/* </Fade> */}
             {/* </HideOn> */}
@@ -310,6 +367,46 @@ function Portfolio() {
                             </p>
 
                             <a href="https://docs.google.com/document/d/17ze1Y0i_vfi8gkIPhUZzENQOjgJuQS4vXhX-iG-JO-E/edit?usp=sharing" target="_blank" className="downloadButton">
+                                Learn More
+                            </a>
+                        </div>
+                        <div className="gridBoxL navPadding"/>
+                        <div className="gridBoxL">
+                            <div className="resumeTitle underlined">
+                                <h1>Personal Projects</h1>
+                            </div>
+                        </div>
+                        <div className="gridBoxL">
+                            <div className="resumeTitle">
+                                <img src={cocktailImg} style={{width:'50%', marginTop:'16px'}}></img>
+                            </div>    
+                        </div>
+                        <div className="gridBoxR">
+                            <h1 className="major">Cocktail Recipes</h1>
+                            <p className="minor">
+                                A cocktail recipe page powered by the CocktailDB API over 
+                                at <a style={{color: "gray"}} href='https://www.thecocktaildb.com/api.php'>TheCocktailDB</a>. (no affiliation)
+                                This page lets you search for cocktails by name or by ingredient and allows you to pull up the recipe with no ads and no backstory.
+                                Just the ingredients, the instructions, and you.
+                            </p>
+
+                            <a href="/#/cocktails" target="_blank" className="downloadButton">
+                                Learn More
+                            </a>
+                        </div>
+                        <div className="gridBoxL">
+                            <div className="resumeTitle">
+                                <img src={WordlePic} style={{width:'50%', marginTop:'16px'}}></img>
+                            </div>    
+                        </div>
+                        <div className="gridBoxR">
+                            <h1 className="major">Wordle Sim</h1>
+                            <p className="minor">
+                                An unlimited Wordle-like game for all of your word game needs. Wordle Sim is a Worldle-like clone that allows for limitless gameplay.
+                                Challenge yourself to guess the word as fast as possible or share your word with friends to see who is the faster wordler.
+                            </p>
+
+                            <a href="/#/wordle" target="_blank" className="downloadButton">
                                 Learn More
                             </a>
                         </div>

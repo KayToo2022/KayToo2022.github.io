@@ -300,7 +300,7 @@ function Wordle() {
         }
 
         const guesses = guessHistory.map((g) => (
-            <div style={{width: "100%", marginBottom: "2px"}}>
+            <div style={{width: "100%", marginBottom: "4.5px"}}>
                 {renderGuess(g)}
             </div>
         ))
@@ -812,42 +812,77 @@ function Wordle() {
                     </div>
                 ) : (
                     null
-                )}  
+                )}
 
-                Wordle sim
-                <br/>
+                {(windowDimensions.width > 800) ? (
+                    <div style={{width: '100%'}}>
+                        <div style={{display: "inline-block", width: "60%", marginLeft: "20%", fontWeight: 'bold', fontSize: "48px"}}>
+                            Wordle Sim
+                        </div>
+                        
+                        <div style={{display: "inline-block", fontSize: "24px", width: "20%", textAlign: "left", justifyContent:'left'}}>
+                            <div>
+                                Wins: {winCount}
+                            </div>
+                            <div>
+                                Winstreak: {winStreak}
+                            </div>
+                        </div>
+                    </div>  
+                ) : (
+                    <div style={{width: '100%'}}>
+                        <div style={{display: "inline-block", width: "48%", marginLeft: "26%", fontWeight: 'bold', fontSize: "30px"}}>
+                            Wordle Sim
+                        </div>
+                        
+                        <div style={{display: "inline-block", fontSize: "15px", width: "26%", textAlign: "left", justifyContent:'left'}}>
+                            <div>
+                                Wins: {winCount}
+                            </div>
+                            <div>
+                                Winstreak: {winStreak}
+                            </div>
+                        </div>
+                    </div> 
+                )}
 
                 
-                <div>
-                    Wins: {winCount}, Winstreak: {winStreak}
-                </div>
+
+                {/* Wordle sim
+                <br/> */}
+
+                
+                
 
                 <br/>
 
                 <div>
                     {renderWorkspace()}
                 </div>
-
-                {/* {(showWord || devTools == 3) ? (
-                    <div>{currentWord}</div>
-                ) : (
-                    (showIssue) ? (
-                        <div>{issue}</div>
-                    ) : (
-                        null
-                        )
-                    )}
-                {(showIssue) ? (
-                    <div>{issue}</div>
-                ) : (null)} */}
                 
                 {(win && seed.toString().length < 5) ? (
-                    <div className="links" onClick={() => {navigator.clipboard.writeText(`${urlData.split("wordle")[0]}wordle/${seed}`)}}>
-                        {(totalTime)/1000}s, Seed: {seed}
+                    <div>
+                        <div>
+                            {(totalTime)/1000}s, Seed: {seed}
+                        </div>
+                        <div className="links" onClick={() => {
+                                navigator.clipboard.writeText(`Solved this wordle-like game in ${totalTime} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)}
+                            }>
+                            Copy to Clipboard
+                        </div>
                     </div>
                 ) : (
                     ((showWord || devTools == 3) && seed.toString().length < 5) ? (
-                        <div>{currentWord}, Seed: {seed}</div>
+                        <div>
+                            <div>
+                                Seed: {seed}
+                            </div>
+                            <div className="links" onClick={() => {
+                                    navigator.clipboard.writeText(`This word is a tough one. See if you can solve it\n${urlData.split("wordle")[0]}wordle/${seed}`)}
+                                }>
+                                Copy to Clipboard
+                            </div>
+                        </div>
                     ) : (
                         (showIssue && seed.toString().length < 5) ? (
                             <div>{issue}</div>
