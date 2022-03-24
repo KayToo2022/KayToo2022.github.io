@@ -50,6 +50,8 @@ function Wordle() {
 
     const [seed, setSeed] = useState(0)
 
+    const [copied, setCopied] = useState(false)
+
     var gen = require('random-seed')
 
     const [wordSeed, setWordSeed] = useState(0)
@@ -195,6 +197,7 @@ function Wordle() {
         setWrong([])
         setMissed([])
         toggleShowWord(false)
+        setCopied(false)
     }
 
     const resetGame = () => {
@@ -210,6 +213,7 @@ function Wordle() {
         setWrong([])
         setMissed([])
         toggleShowWord(false)
+        setCopied(false)
         if (seed.toString().length > 4) {
             setSeed(seed + 1)
         } else {
@@ -767,6 +771,30 @@ function Wordle() {
         )
     }
 
+    const copyGrid = () => {
+        var tempText = ""
+
+        for (var i in guessHistory) {
+            // console.log(guessHistory[i])
+            for (var j in guessHistory[i]) {
+                // console.log(guessHistory[i][j])
+                if (guessHistory[i][j][1] == 0) {
+                    tempText += "🟨"
+                }
+                if (guessHistory[i][j][1] == 1) {
+                    tempText += "🟩"
+                }
+                if (guessHistory[i][j][1] == -1) {
+                    tempText += "⬛️"
+                }
+            }
+            // console.log('')
+            tempText += '\n'
+        }
+        // console.log(tempText)
+        return tempText
+    }
+
     return (
         <div className="testLanding" style={{height: "auto"}}>
             <div style={{width: "100%", maxWidth: "750px"}}>
@@ -809,6 +837,11 @@ function Wordle() {
                             submitSeed(0)
                         }}
                     >Set Seed</button>
+                    <button
+                        onClick={() => {
+                            console.log(copyGrid())
+                        }}
+                    >Test</button>
                     </div>
                 ) : (
                     null
@@ -866,9 +899,17 @@ function Wordle() {
                             {(totalTime)/1000}s, Seed: {seed}
                         </div>
                         <div className="links" onClick={() => {
-                                navigator.clipboard.writeText(`Solved this wordle-like game in ${(totalTime)/1000} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)}
+                                    // navigator.clipboard.writeText(`Solved this wordle-like game in ${(totalTime)/1000} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                    navigator.clipboard.writeText(`${guessHistory.length}/6 guesses\n${((totalTime)/1000).toFixed(2)} seconds\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                    setCopied(true)
+                                }   
                             }>
-                            Copy to Clipboard
+                            {(copied) ? (
+                                "Copied"
+                            ) : (
+                                "Copy to Clipboard"
+                            )}
+                            
                         </div>
                     </div>
                 ) : (
@@ -878,9 +919,16 @@ function Wordle() {
                                 Word: {currentWord} Seed: {seed}
                             </div>
                             <div className="links" onClick={() => {
-                                    navigator.clipboard.writeText(`This word is a tough one. See if you can solve it\n${urlData.split("wordle")[0]}wordle/${seed}`)}
+                                        // navigator.clipboard.writeText(`This word is a tough one. See if you can solve it\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                        navigator.clipboard.writeText(`${guessHistory.length}/6 guesses\n${((totalTime)/1000).toFixed(2)} seconds\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                        setCopied(true)
+                                    }
                                 }>
-                                Copy to Clipboard
+                                {(copied) ? (
+                                    "Copied"
+                                ) : (
+                                    "Copy to Clipboard"
+                                )}
                             </div>
                         </div>
                     ) : (
