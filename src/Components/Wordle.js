@@ -994,7 +994,7 @@ function Wordle() {
                         </div>
                         <div className="links" onClick={() => {
                                     // navigator.clipboard.writeText(`Solved this wordle-like game in ${(totalTime)/1000} seconds. See if you can do better\n${urlData.split("wordle")[0]}wordle/${seed}`)
-                                    navigator.clipboard.writeText(`${guessHistory.length}/6 guesses\n${((totalTime)/1000).toFixed(2)} seconds\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                    navigator.clipboard.writeText(`Guesses: ${guessHistory.length}/6\nTime: ${((totalTime)/1000).toFixed(2)} s\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
                                     setCopied(true)
                                 }   
                             }>
@@ -1014,7 +1014,7 @@ function Wordle() {
                             </div>
                             <div className="links" onClick={() => {
                                         // navigator.clipboard.writeText(`This word is a tough one. See if you can solve it\n${urlData.split("wordle")[0]}wordle/${seed}`)
-                                        navigator.clipboard.writeText(`${guessHistory.length}/6 guesses\nN/A seconds\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
+                                        navigator.clipboard.writeText(`Guesses: X/6\nTime: N/A\n${copyGrid()}\n${urlData.split("wordle")[0]}wordle/${seed}`)
                                         setCopied(true)
                                     }
                                 }>
