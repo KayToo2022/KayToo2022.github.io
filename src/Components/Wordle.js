@@ -58,6 +58,8 @@ function Wordle() {
     const [tempSeed, submitSeed] = useState(0)
     const [parsedSeed, setParsedSeed] = useState(-1)
 
+    const [chars, setChars] = useState({})
+
     const kbTop = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p']
     const kbMid = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
     const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
@@ -180,10 +182,23 @@ function Wordle() {
         }
     }, [endTime])
 
+    const charCount = (word) => {
+        var ret = {}
+        for (var i in word) {
+            if (word[i] in ret) {
+                ret[word[i]] += 1
+            } else {
+                ret[word[i]] = 1
+            }
+        }
+        return ret
+    }
+
     const generateWord = () => {
         var rand = wordSeed
         var word = wordBank[wordSeed]
         //var word = wordBank[Math.floor(Math.random() * wordBank.length)]
+        setChars(charCount(word))
         setWord(word)
     }
 
@@ -236,13 +251,61 @@ function Wordle() {
             var ret = []
             var didWin = true;
 
+            var greenLet = {}
+            var yellowLet = {}
+
+            // Pre-process (handles duplicates to the right)
             for (var i in guess) {
                 var val = -1
                 
                 if (guess[i] == currentWord[i]) {
                     val = 1
+                    // store that this letter is correct and should not have its color modified
+                    if (guess[i] in greenLet) {
+                        greenLet[guess[i]] += 1
+                    } else {
+                        greenLet[guess[i]] = 1
+                    }
                 } else if (currentWord.indexOf(guess[i]) >= 0) {
+                    // color (val) should be modified if color already exists and multiple does not exist
+                    
                     val = 0
+
+                    // threshold checks
+
+                    // green + yellow
+                    if (guess[i] in greenLet && guess[i] in yellowLet) {
+                        if (greenLet[guess[i]] + yellowLet[guess[i]] + 1 > chars[guess[i]]) {
+                            val = -1
+
+                        }
+                    }
+
+                    // just green (no other yellows)
+                    if (guess[i] in greenLet) {
+
+                        if (greenLet[guess[i]] + 1 > chars[guess[i]]) {
+                            val = -1
+
+                        }
+                    }
+
+                    // just yellow (no other greens)
+                    if (guess[i] in yellowLet) {
+                        if (yellowLet[guess[i]] + 1 > chars[guess[i]]) {
+                            val = -1
+
+                        }
+                    }
+
+                    // if not modified, it is a valid yellow
+                    if (val == 0) {
+                        if (guess[i] in yellowLet) {
+                            yellowLet[guess[i]] += 1
+                        } else {
+                            yellowLet[guess[i]] = 1
+                        }
+                    }
                 }
 
                 if (val != 1) {
@@ -270,7 +333,38 @@ function Wordle() {
             }
             
 
+
             
+            // tempChars is meant to be used like a yellowLet
+            var tempChars = {}
+
+            // Post process
+            // go back to each yellow and see if it needs to be changed
+            // test on seed 3896 epees (correct previous), penne (control), tepee (l to r)
+
+            for (var i in ret) {
+                // check only yellow chars
+                if (ret[i][1] == 0) {
+                    // track current char count for each character
+                    if (ret[i][0] in tempChars) {
+                        tempChars[ret[i][0]] += 1
+                    } else {
+                        tempChars[ret[i][0]] = 1
+                    }
+
+
+                    if (ret[i][0] in greenLet){
+                        // check against green let and see if it breaks threshold
+
+                        if (tempChars[ret[i][0]] + greenLet[ret[i][0]] > chars[ret[i][0]]) {
+                            ret[i][1] = -1 
+                        }
+                        // yellow threshold is handled in the pre process of ret
+                        // since the first valid yellow is allowed and handled accordingly, we don't need to handle it again
+
+                    } 
+                }
+            }
 
             setWin(didWin)
             var tempHist = guessHistory
@@ -775,9 +869,9 @@ function Wordle() {
         var tempText = ""
 
         for (var i in guessHistory) {
-            // console.log(guessHistory[i])
+
             for (var j in guessHistory[i]) {
-                // console.log(guessHistory[i][j])
+
                 if (guessHistory[i][j][1] == 0) {
                     tempText += "🟨"
                 }
@@ -788,10 +882,10 @@ function Wordle() {
                     tempText += "⬛️"
                 }
             }
-            // console.log('')
+
             tempText += '\n'
         }
-        // console.log(tempText)
+
         return tempText
     }
 
@@ -837,11 +931,11 @@ function Wordle() {
                             submitSeed(0)
                         }}
                     >Set Seed</button>
-                    <button
+                    {/* <button
                         onClick={() => {
-                            console.log(copyGrid())
+                            
                         }}
-                    >Test</button>
+                    >Test</button> */}
                     </div>
                 ) : (
                     null
