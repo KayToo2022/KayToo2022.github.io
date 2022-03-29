@@ -303,7 +303,7 @@ function Wordle() {
             toggleIssue(true)
             // console.log("Guess must be 5 letters")
         } else if (guessBank.indexOf(guess) < 0){
-            // setIssue("Not a valid word")
+            setIssue("Not a valid word")
             toggleIssue(true)
             // console.log("Not a word")
         } else {
