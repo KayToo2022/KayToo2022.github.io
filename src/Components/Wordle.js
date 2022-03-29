@@ -60,6 +60,8 @@ function Wordle() {
 
     const [chars, setChars] = useState({})
 
+    const [charPressed, setCharPressed] = useState("")
+
     const kbTop = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p']
     const kbMid = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
     const kbBot = ['z', 'x', 'c', 'v', 'b', 'n', 'm'] 
@@ -67,6 +69,8 @@ function Wordle() {
     var urlData = window.location.href
 
     const navigate = useNavigate()
+
+    
 
     useEffect(() => {
 
@@ -126,11 +130,65 @@ function Wordle() {
             handleUrlChange,
             false
         );
+
+        // use these to handle keypress without input field
+
+        const onKeyDown = ({key}) => {
+
+            setCharPressed(key)
+
+
+        }
+
+        const onKeyUp = ({key}) => {
+            // no real use for this yet
+        }
+
+        document.addEventListener('keydown', onKeyDown);
+        document.addEventListener('keyup', onKeyUp);
+
+
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+
+            document.removeEventListener('keydown', onKeyDown);
+            document.removeEventListener('keyup', onKeyUp);
+        }
 
         
     }, []);
+
+    useEffect(() => {
+        /* 
+            since onKeyDown and onKeyUp cannot seem to see the variable but are still
+            able to use the hook, handle hook function here
+
+            resets the charPressed to a blank char since useeffect doesn't execute if
+            no change is detected
+        */
+        if (charPressed != "") {
+            // console.log(charPressed)
+
+            toggleIssue(false)
+            if (!started) {
+                toggleStarted(true)
+            }
+            if (win || guessCount >=6) {
+                resetGame()
+            }
+            if (currentGuess.length < 5 && charPressed != "Enter" && charPressed !="Backspace") {
+                setGuess(currentGuess+charPressed)
+            }
+            if (charPressed == "Enter") {
+                submitGuess(currentGuess.toLowerCase())
+            }
+            if (charPressed == "Backspace") {
+                setGuess(currentGuess.substr(0,currentGuess.length -1 ))
+            }
+        }
+        setCharPressed("")
+    }, [charPressed])
 
 
     useEffect(() => {
@@ -177,7 +235,7 @@ function Wordle() {
 
     useEffect(() => {
         if (endTime > startTime && win) {
-            console.log(endTime - startTime)
+            // console.log(endTime - startTime)
             setTotalTime(endTime-startTime)
         }
     }, [endTime])
@@ -237,15 +295,17 @@ function Wordle() {
         // setSeed(Math.floor(Math.random() * 10000))
     }
 
+    
+
     const submitGuess = (guess) => {
         if (!guess || guess.length != 5) {
             setIssue("Guess must be 5 letters")
             toggleIssue(true)
-            console.log("Guess must be 5 letters")
+            // console.log("Guess must be 5 letters")
         } else if (guessBank.indexOf(guess) < 0){
-            setIssue("Not a valid word")
+            // setIssue("Not a valid word")
             toggleIssue(true)
-            console.log("Not a word")
+            // console.log("Not a word")
         } else {
             setCount(guessCount + 1)
             var ret = []
@@ -889,8 +949,14 @@ function Wordle() {
         return tempText
     }
 
+
+
     return (
-        <div className="testLanding" style={{height: "auto"}}>
+        <div className="testLanding" style={{height: "auto"}}
+            // be able to submit while not in text entry
+
+
+        >
             <div style={{width: "100%", maxWidth: "750px"}}>
                 {(devTools == 3) ? (
                     <div  
@@ -920,7 +986,7 @@ function Wordle() {
                             if (!isNaN(e.target.value)) {
                                 submitSeed(parseInt(e.target.value))
                             } else {
-                                console.log("invalid")
+                                // console.log("invalid")
                             }
                         }}
                     />
@@ -933,7 +999,7 @@ function Wordle() {
                     >Set Seed</button>
                     {/* <button
                         onClick={() => {
-                            
+
                         }}
                     >Test</button> */}
                     </div>
@@ -1052,7 +1118,12 @@ function Wordle() {
 
                 <br/>
                 <div className="flexbox">
-                <input
+
+                
+                {
+                // old input box, might still need it
+
+                /* <input
                     className="ctButton"
                     style={{marginLeft: "5%", marginRight: "5%",marginTop:"0", float: "left", border: "none", backgroundColor: "white", color: "black", padding: "12px", width: "30%", justifyContent: "center"}}
                     
@@ -1072,6 +1143,7 @@ function Wordle() {
                         setGuess(temp)
 
                     }}
+                    // attempting to have keyboard functionality without text input box
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                             if (win || guessCount >=6) {
@@ -1080,7 +1152,7 @@ function Wordle() {
                             submitGuess(currentGuess.toLowerCase())
                         }
                     }}
-                />
+                /> */}
             
                 {(win) ? (
                     <button 
@@ -1088,12 +1160,12 @@ function Wordle() {
                             resetGame()
                         }}
                         className="wordleButton"
-                        style={{padding: "11px", marginRight: "5%", width: "60%"}}
+                        style={{padding: "11px", width: "100%"}}
                     >
                         Continue
                     </button>
                 ) : (
-                    <div style={{display: "inline", marginRight: "5%", width: "60%"}}>
+                    <div style={{display: "inline", width: "100%"}}>
                         <button 
                             className="wordleButton"
                             style={{padding: "11px", width: "40%", marginRight: "5%"}}
