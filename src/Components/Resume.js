@@ -108,7 +108,7 @@ function Resume() {
                             <SkillBar name="JavaScript" percent="70" className="major" color="rgb(76, 143, 225)"/>
                             <SkillBar name="React" percent="90" className="major" color="rgb(109, 69, 188)"/>
                             <SkillBar name="Git" percent="65" className="major" color="rgb(108, 223, 240)"/>
-                            <SkillBar name="MATLAB" percent="45" className="major" color="rgb(97, 103, 122)"/>
+                            {/* <SkillBar name="MATLAB" percent="45" className="major" color="rgb(97, 103, 122)"/> */}
                         </div>
                     </div>
                 </Fade>
@@ -198,7 +198,7 @@ function Resume() {
                             <SkillBar name="JavaScript" percent="70" className="major"/>
                             <SkillBar name="React" percent="90" className="major"/>
                             <SkillBar name="Git" percent="65" className="major"/>
-                            <SkillBar name="MATLAB" percent="45" className="major"/>
+                            {/* <SkillBar name="MATLAB" percent="45" className="major"/> */}
                         </div>
                         
                         

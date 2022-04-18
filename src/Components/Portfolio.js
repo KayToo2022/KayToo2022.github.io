@@ -117,7 +117,7 @@ function Portfolio() {
                                 advisors of patients manage their patients.
                             </p>
 
-                            <a href="https://manifestmy.space/" target="_blank" className="downloadButton">
+                            <a href="https://manifestmy.life/" target="_blank" className="downloadButton">
                                 Learn More
                             </a>
                         </div>
@@ -302,7 +302,7 @@ function Portfolio() {
                                 advisors of patients manage their patients.
                             </p>
 
-                            <a href="https://manifestmy.space/" target="_blank" className="downloadButton">
+                            <a href="https://manifestmy.life/" target="_blank" className="downloadButton">
                                 Learn More
                             </a>
                         </div>
