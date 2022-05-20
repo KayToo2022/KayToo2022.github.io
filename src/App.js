@@ -25,6 +25,7 @@ import Cocktails from "./Components/Cocktails"
 import TestSpace from "./Components/TestSpace"
 import SkillBar from "./Components/skill_bar/SkillBar"
 import Wordle from "./Components/Wordle"
+import NotFound from "./Components/NotFound"
 
 function App() {
 
@@ -98,10 +99,12 @@ function App() {
         <Route path='/wordle/:id' element={
           <Wordle/>
         }/>
+        <Route element={<NotFound/>}/>
+        
       </Routes>
       <div style={{width:'100%', backgroundColor:'black'}}>
           <p style={{fontSize:'12px', color:'gray'}}>
-            v3.8.2
+            v3.8.3
           </p>
         </div>
       

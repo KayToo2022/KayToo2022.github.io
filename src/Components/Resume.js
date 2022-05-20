@@ -8,6 +8,7 @@ import {
 } from "react-hide-on-scroll";
 
 import SkillBar from "./skill_bar/SkillBar"
+import DropdownBox from "./dropdown_box/DropdownBox"
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -20,7 +21,9 @@ function getWindowDimensions() {
 function Resume() {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
+    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI & Data Engineering", "Data Mining (In Progress)"]
+    var undergradCoursesMath = ["Discrete Math", "Calculus III", "Linear Algebra I", "Ordinary Differential Equations & Dynamical Systems", "Intro to Combinatorics", "Applied Probability & Statistics I", "Applied Algebra", "Complex Variables", "Math Modeling", "Intro to Graph Theory"]
+    var undergradCoursesCS = ["Data Structures & Algorithms", "Object Oriented Design", "Intro to Computer Graphics", "Advanced Python Programming", "Numerical Analysis & Scientific Computing", "Intro to Artificial Intelligence", "Computer Game Design & Programming", "Formal Languages & Computability"]
     useEffect(() => {
         function handleResize() {
         setWindowDimensions(getWindowDimensions());
@@ -46,9 +49,15 @@ function Resume() {
                             <h1 className="major">Masters in Artificial Intelligence</h1>
                             <p className="info">San Jose State University • May 2024</p>
 
+                            <DropdownBox title = "Relevant Coursework" color="#06058C" items = {gradCourses} columns = {1}/>
+
                             <h1 className="major">Bachelors in Applied Mathematics</h1>
                             <p className="minor">Minor in Computer Science</p>
                             <p className="info">San Jose State University • May 2021</p>
+
+                            <DropdownBox title = "Relevant Coursework (CS)" color="#06058C" items = {undergradCoursesCS} columns = {1}/>
+                            <DropdownBox title = "Relevant Coursework (Math)"color="#06058C" items = {undergradCoursesMath} columns = {1}/>
+                            
                         </div>
                         <div className="gridBoxMobile">
                             <div className="resumeTitle underlined">
@@ -132,10 +141,17 @@ function Resume() {
                         <div className="gridBoxR">
                             <h1 className="major">Masters in Artificial Intelligence</h1>
                             <p className="info">San Jose State University • May 2024</p>
+                            
+                            <DropdownBox title = "Relevant Coursework" color="#06058C" items = {gradCourses} columns = {2}/>
 
                             <h1 className="major">Bachelors in Applied Mathematics</h1>
                             <p className="minor">Minor in Computer Science</p>
                             <p className="info">San Jose State University • May 2021</p>
+                            
+
+                            <DropdownBox title = "Relevant Coursework (CS)" color="#06058C" items = {undergradCoursesCS} columns = {2}/>
+                            <DropdownBox title = "Relevant Coursework (Math)"color="#06058C" items = {undergradCoursesMath} columns = {2}/>
+                            
                         </div>
 
                         <div className="gridBoxL">

@@ -5,6 +5,7 @@ import ReactSlider from "react-slider";
 import axios from "axios";
 
 import SkillBar from "./skill_bar/SkillBar"
+import DropdownBox from "./dropdown_box/DropdownBox"
 
 function TestSpace() {
 
@@ -19,6 +20,9 @@ function TestSpace() {
         rgbColor = `rgb(255,${510/100 * sliderVal},0)`
     }
 
+    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI and Data Engineering", "Data Mining"]
+    var undergradCoursesMath = ["Discrete Math", "Calculus III", "Linear Algebra I", "Ordinary Differential Equations and Dynamical Systems", "Intro to Combinatorics", "Applied Probability and Statistics I", "Applied Algebra", "Complex Variables", "Math Modeling", "Intro to Graph Theory"]
+    var undergradCoursesCS = ["Data Structures & Algorithms", "Object Oriented Design", "Intro to Computer Graphics", "Advanced Python Programming", "Numerical Analysis and Scientific Computing", "Intro to Artificial Intelligence", "Computer Game Design and Programming", "Formal Languages and Computability"]
     // window.scrollTo(0, 0);
     return(
         <div>
@@ -87,10 +91,17 @@ function TestSpace() {
                             }
                         />
                         <div style={{width:'100%', height:"30px"}}/>
+                        
+                        <DropdownBox title="test" color="red" items = {undergradCoursesMath} columns = {2}></DropdownBox>
+                        <DropdownBox title="test" color="red" items = {undergradCoursesCS} columns = {2}></DropdownBox>
+                        
                     </div>
+                    
                 </div>
                 {/* <SkillBar skill="Testing" progress="95" color="#F26522"/>
                 <SkillBar skill="Testing1" progress="40" color="yellow"/> */}
+
+                
             </div>
 
             <div>
@@ -112,6 +123,11 @@ function TestSpace() {
                 >
                     Test
                 </button>
+            </div>
+            <br/>
+
+            <div>
+                
             </div>
         </div>
         
