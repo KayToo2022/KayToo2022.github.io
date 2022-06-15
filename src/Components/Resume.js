@@ -21,7 +21,7 @@ function getWindowDimensions() {
 function Resume() {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI & Data Engineering", "Data Mining", "Machine Learning (In Progress"]
+    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI & Data Engineering", "Data Mining", "Machine Learning (In Progress)"]
     var undergradCoursesMath = ["Discrete Math", "Calculus III", "Linear Algebra I", "Ordinary Differential Equations & Dynamical Systems", "Intro to Combinatorics", "Applied Probability & Statistics I", "Applied Algebra", "Complex Variables", "Math Modeling", "Intro to Graph Theory"]
     var undergradCoursesCS = ["Data Structures & Algorithms", "Object Oriented Design", "Intro to Computer Graphics", "Advanced Python Programming", "Numerical Analysis & Scientific Computing", "Intro to Artificial Intelligence", "Computer Game Design & Programming", "Formal Languages & Computability"]
     useEffect(() => {
