@@ -21,7 +21,7 @@ function getWindowDimensions() {
 function Resume() {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI & Data Engineering", "Data Mining (In Progress)"]
+    var gradCourses = ["Data Structures & Algorithms in Python", "Math Foundations for Decisions & Data Sciences", "AI & Data Engineering", "Data Mining", "Machine Learning (In Progress"]
     var undergradCoursesMath = ["Discrete Math", "Calculus III", "Linear Algebra I", "Ordinary Differential Equations & Dynamical Systems", "Intro to Combinatorics", "Applied Probability & Statistics I", "Applied Algebra", "Complex Variables", "Math Modeling", "Intro to Graph Theory"]
     var undergradCoursesCS = ["Data Structures & Algorithms", "Object Oriented Design", "Intro to Computer Graphics", "Advanced Python Programming", "Numerical Analysis & Scientific Computing", "Intro to Artificial Intelligence", "Computer Game Design & Programming", "Formal Languages & Computability"]
     useEffect(() => {
@@ -47,7 +47,7 @@ function Resume() {
                         </div>
                         <div className="gridBoxMobile">
                             <h1 className="major">Masters in Artificial Intelligence</h1>
-                            <p className="info">San Jose State University • May 2024</p>
+                            <p className="info">San Jose State University • May 2024 • GPA: 3.9</p>
 
                             <DropdownBox title = "Relevant Coursework" color="#06058C" items = {gradCourses} columns = {1}/>
 
@@ -65,9 +65,9 @@ function Resume() {
                             </div>
                         </div>
                         <div className="gridBoxMobile">
-                            {/* <h1 className="major">Adobe</h1>
+                            <h1 className="major">Adobe</h1>
                             <p className="minor">Software Engineering Intern, eCommerce Experiences</p>
-                            <p className="info">May 2022 - August 2022</p> */}
+                            <p className="info">May 2022 - August 2022</p>
                             
                             <h1 className="major">Infinite Options</h1>
                             <p className="minor">Front-End Development Intern</p>
@@ -140,7 +140,7 @@ function Resume() {
                         </div>
                         <div className="gridBoxR">
                             <h1 className="major">Masters in Artificial Intelligence</h1>
-                            <p className="info">San Jose State University • May 2024</p>
+                            <p className="info">San Jose State University • May 2024 • GPA: 3.9</p>
                             
                             <DropdownBox title = "Relevant Coursework" color="#06058C" items = {gradCourses} columns = {2}/>
 
@@ -160,9 +160,9 @@ function Resume() {
                             </div>
                         </div>
                         <div className="gridBoxR">
-                            {/* <h1 className="major">Adobe Inc.</h1>
+                            <h1 className="major">Adobe Inc.</h1>
                             <p className="minor">Software Engineering Intern, eCommerce Experiences</p>
-                            <p className="info">May 2022 - August 2022</p> */}
+                            <p className="info">May 2022 - August 2022</p>
 
                             <h1 className="major">Infinite Options LLC</h1>
                             <p className="minor">Front-End Development Intern</p>
