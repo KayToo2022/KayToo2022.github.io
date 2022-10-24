@@ -129,7 +129,7 @@ function About() {
 
                                 <div className="gridCol11_16">
                                    <h1>Resume:</h1>
-                                   <a href="https://drive.google.com/file/d/1LrkhlJ_QOVjraYpZ6QjBPVsqhWaDDnlZ/view?usp=sharing" target="_blank" className="downloadButton">
+                                   <a href="https://drive.google.com/file/d/1c5YFJRKJHAafLt2EpfLDcAuL2-vfL2GW/view?usp=sharing" target="_blank" className="downloadButton">
                                        Download
                                    </a>
                                 </div>
