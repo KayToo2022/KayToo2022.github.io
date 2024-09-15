@@ -1,0 +1,335 @@
+.main {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.linkcontainer {
+    z-index: 1;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    padding-top: 10px;
+}
+
+.links {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    height: 30px;
+    padding-top: 10px;
+}
+
+.links:hover {
+    color: skyblue
+}
+
+a:hover {
+    color: skyblue
+}
+
+.MainContent {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    display: inline-block;
+    /* display: flex; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.testLanding {
+    height: 100vh;
+    /* height: auto; */
+    width: 100%;
+    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navPadding {
+    height: 60px;
+}
+
+.resumeContainer {
+    width: 100vw;
+    justify-content: left;
+    text-align: left;
+}
+
+.resumeTitle {
+    float: left;
+    width: 30%;
+}
+
+.resumeContent {
+    float: left;
+    width: 70%;
+}
+
+.gridWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(20, 5%);
+}
+
+.gridBoxL {
+    text-align: left;
+    grid-column: 2/8;
+
+}
+
+.gridBoxMobile {
+    text-align: left;
+    grid-column: 2/20;
+}
+
+
+.gridBoxR {
+    text-align: left;
+    grid-column: 8/20;
+    margin-bottom: 20px;
+}
+
+.gridCol1_6 {
+    text-align: left;
+    grid-column: 1/6;
+
+}
+
+.gridCol6_11 {
+    text-align: left;
+    grid-column: 6/11;
+
+}
+
+.gridCol11_16 {
+    text-align: left;
+    grid-column: 11/16;
+
+}
+
+.resumeTitle {
+    width: auto;
+}
+
+.major {
+    font: 24px sans-serif;
+    font-weight: bold;
+    text-transform: none;
+}
+
+.minor {
+    color: gray;
+    font: 20px sans-serif;
+}
+
+.info {
+    color: gray;
+    font: 18px sans-serif;
+    font-style: italic;
+
+}
+
+.underlined {
+    border-bottom: 3px solid #06058C;
+}
+
+.active {
+    color: #F26522;
+}
+
+h1 {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.contactInfo{
+    font: 18px serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+}
+
+.landing {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.Title {
+    font-size: 90px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.message {
+    font: 22px/1.9em serif;
+    color: #ddd;
+    width: 50%;
+}
+
+.downloadButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: darkslategrey;
+    color: white;
+    text-decoration: none;
+}
+
+.downloadButton:hover{
+    background-color: white;
+    color: darkslategrey;
+    transition: 0.5s;
+}
+
+.ctButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: #cdab4b;
+    text-decoration: none;
+    border: 1px solid #cdab4b;
+}
+
+.ctButton:hover{
+    background-color: #cdab4b;
+    color: black;
+    transition: 0.5s;
+}
+
+.ctDropdown {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    background-color: black;
+    color: #cdab4b;
+    border: 1px solid #cdab4b;
+}
+
+.ctDropdown:hover{
+    background-color: #cdab4b;
+    color: black;
+    transition: 0.5s;
+}
+
+.wordleLetter {
+    height: 36px;
+    width: 36px;
+    border: 1px gray solid;
+}
+
+.wordleButton {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: green;
+    text-decoration: none;
+    border: 1px solid green;
+}
+
+.wordleButton:hover {
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+}
+
+.wordleReset {
+    font: 18px sans-serif;
+    /* display: box; */
+    text-transform: none;
+    letter-spacing: 1px;
+    font-weight: none;
+    margin-left: 0px;
+    /* margin-top: 0px; */
+    padding: 10px;
+    background-color: black;
+    color: red;
+    text-decoration: none;
+    border: 1px solid red;
+}
+
+.wordleReset:hover {
+    background-color: red;
+    color: white;
+    transition: 0.5s;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+.wordleGuess {
+    background-color: black;
+    width: 20vw;
+    margin: 10px;
+    height: 50px;
+    text-align: center;
+    
+    /* line-height: 75px;
+    font-size: 30px; */
+}
+
+.square {
+    position: relative;
+    width: 20%;
+    max-width: 50px;
+    border: 1px gray solid;
+    margin: 2px;
+}
+  
+.square:after {
+    content: "";
+    display: block;
+    padding-top: 50%;
+    padding-bottom: 50%;
+}
+
+.content {
+    transform: translateY(25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

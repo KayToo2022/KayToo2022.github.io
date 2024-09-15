@@ -1,0 +1,29 @@
+.main {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.linkcontainer {
+    z-index: 1;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    padding-top: 10px;
+    float: top;
+}
+
+.links {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    height: 30px;
+    padding-top: 10px;
+}
+
+a:hover {
+    color: #F26522
+}
