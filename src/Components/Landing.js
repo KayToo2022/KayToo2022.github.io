@@ -1,7 +1,7 @@
 import {React, useEffect, useState}from "react";
 import Fade from "react-reveal";
 import ParticlesBg from "particles-bg";
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Link } from 'react-scroll'
 
 import "./styles.css"
 

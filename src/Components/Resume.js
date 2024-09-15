@@ -1,11 +1,5 @@
 import {React, useEffect, useState}from "react";
 import Fade from "react-reveal";
-import {
-    HideBetween,
-    HideDuring,
-    HideOn,
-    HideScroll,
-} from "react-hide-on-scroll";
 
 import SkillBar from "./skill_bar/SkillBar"
 import DropdownBox from "./dropdown_box/DropdownBox"
