@@ -65,6 +65,10 @@ function Resume() {
                             </div>
                         </div>
                         <div className="gridBoxMobile">
+                            <h1 className="major">Adobe Inc.</h1>
+                            <p className="minor">Software Engineer, eCommerce Experiences</p>
+                            <p className="info">December 2022 - current</p>
+
                             <h1 className="major">Adobe</h1>
                             <p className="minor">Software Engineering Intern, eCommerce Experiences</p>
                             <p className="info">May 2022 - August 2022</p>
@@ -160,6 +164,10 @@ function Resume() {
                             </div>
                         </div>
                         <div className="gridBoxR">
+                            <h1 className="major">Adobe Inc.</h1>
+                            <p className="minor">Software Engineer, eCommerce Experiences</p>
+                            <p className="info">December 2022 - current</p>
+
                             <h1 className="major">Adobe Inc.</h1>
                             <p className="minor">Software Engineering Intern, eCommerce Experiences</p>
                             <p className="info">May 2022 - August 2022</p>

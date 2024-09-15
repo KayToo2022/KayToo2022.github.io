@@ -46,17 +46,16 @@ function About() {
                                 <h1>About Me</h1>
 
                                 <p className="message" style={{width:'100%'}}>
-                                    My name is Kyle Tu. I am an aspiring software developer studying to get my 
-                                    Masters in Artificial Intelligence at San Jose State 
-                                    University. I mainly use React to code webpages but I 
-                                    have experience coding in Java, Python, C++, etc.
+                                I am a front-end developer at Adobe working in e-commerce with a Masters in Artificial Intelligence.
+                                I am proficient in TypeScript and GraphQL and am also familiar with tuning LLMs with tensorflow.
                                 </p>
 
                                 <p className="message" style={{width:'100%'}}>
-                                    Earning my Major in Applied Mathematics and Minor in Computer
-                                    Science, I know my way around numbers and algorithms. Through 
-                                    obtaining my Masters in Artificial Intelligence, I hope to sharpen
-                                    my software engineering skills and grow as a developer.
+                                Earning my Major in Applied Mathematics and Minor in Computer
+                                Science, I know my way around numbers and algorithms. Through 
+                                obtaining my Masters in Artificial Intelligence, I am familiar 
+                                with training models for tasks relating to natural Language processing
+                                with projects around text classification and question answering.
                                 </p>
 
                                 {/* <div className="gridWrapper">
@@ -106,17 +105,16 @@ function About() {
                             <h1>About Me</h1>
 
                             <p className="message" style={{width:'100%'}}>
-                                My name is Kyle Tu. I am an aspiring software developer studying to get my 
-                                Masters in Artificial Intelligence at San Jose State 
-                                University. I mainly use React to code webpages but I 
-                                have experience coding in Java, Python, C++, etc.
+                                I am a front-end developer at Adobe working in e-commerce with a Masters in Artificial Intelligence.
+                                I am proficient in TypeScript and GraphQL and am also familiar with tuning LLMs with tensorflow.
                             </p>
 
                             <p className="message" style={{width:'100%'}}>
                                 Earning my Major in Applied Mathematics and Minor in Computer
                                 Science, I know my way around numbers and algorithms. Through 
-                                obtaining my Masters in Artificial Intelligence, I hope to sharpen
-                                my software engineering skills and grow as a developer.
+                                obtaining my Masters in Artificial Intelligence, I am familiar 
+                                with training models for tasks relating to natural Language processing
+                                with projects around text classification and question answering.
                             </p>
 
                             <div className="gridWrapper">

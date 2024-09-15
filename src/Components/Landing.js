@@ -29,9 +29,7 @@ function Landing() {
         if (windowDimensions.width > 900) {
             return (
                 <div className="message" style={{height:'auto'}}>
-                        I am an aspiring software developer studying to get my 
-                        Masters in Artificial Intelligence at San Jose State 
-                        University.
+                    I am a front-end developer at Adobe working in e-commerce with a Masters in Artificial Intelligence.
                 </div>
             )
         }
@@ -49,11 +47,6 @@ function Landing() {
             <Fade>
                 <div className="landing" style={{height:'auto'}}>
                     <p className="Title" style={{height:'auto'}}>Hi! My name is Kyle Tu</p>
-                    {/* <div className="message" style={{height:'auto'}}>
-                        I am an aspiring software developer studying to get my 
-                        Masters in Artificial Intelligence at San Jose State 
-                        University.
-                    </div> */}
                     {banner()}
                     <br/>
                     <Link className="message" to="about" smooth={true} duration={500} spy={true}  style={{height:'auto'}}>Click here to get started</Link>
